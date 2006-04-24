@@ -1,0 +1,12 @@
+This directory contains some useful tool written to be used in zhcon.
+
+uc2win: convert UCDOS's dict file into windows ime file format
+    usage: ./uc2win < wb.dic > wb.txt 
+
+win2mb: convert windows ime file into zhcon's native ime format(*.mb)
+    usage: ./win2mb < winpy.txt > winpy.mb
+
+NOTE:   you must convert all the file from dos format to unix format before start conversation:
+    tr -d '-r' < wb.dic >wb.dic.new
+
+just so much document so far;)

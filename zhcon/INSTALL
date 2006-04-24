@@ -1,0 +1,44 @@
+########################
+#### For Linux User ####
+########################
+
+First, make sure you have your kernel compiled with framebuffer support
+this version can only work with 8bpp, 15bpp, 16bpp,  24bpp,  and 32bpp mode
+other color depth need libggi supported.
+see /usr/src/linux/Documentation/fb/vesafb.txt for more detials on
+using framebuffer device.
+
+1) $ ./configure
+2) $ make
+3) make sure you are root now then type
+   $ make install
+   to install zhcon
+
+You can use ./configure --prefix=/usr to install zhcon into /usr/bin
+If you want to debug, use ./configure --enable-debug=yes to turn on debug
+info.
+
+after install you can type zhcon to use.
+
+enjoy!
+
+###########################
+####  For FreeBSD User ####
+###########################
+
+First,  make sure you have installed gmake,  or GNU Make.
+The FreeBSD's make/pmake may work,  but I don't promise that.
+Then:
+
+1) $ ./configue
+2) $ gmake
+3) su to root
+4) # gmake install
+
+then type zhcon to enjoy :)
+
+NOTICE AGAIN: Use gmake,  not make!!
+
+You can adjust screen resolution and/or color depth(only for FreeBSD).
+Read /etc/zhcon.conf for more details.
+

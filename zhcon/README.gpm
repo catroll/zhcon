@@ -1,0 +1,29 @@
+download gpm-1.19.6(a patched version of gpm has been included in tools/)
+# cd /tmp
+# tar zvfx gpm-1.19.6.tar.gz
+
+copy zhcon/src/tools/gpm-1.19.6-pty.diff
+# patch -p0 < gpm-1.19.6-pty.diff
+
+# cd gpm-1.19.6
+# ./configure --prefix=/usr
+# make
+
+quit any api using mouse, like mc. Return to console.
+stop mouse service
+# /etc/init.d/gpm stop
+
+install new gpm and restart service
+# make install
+# /etc/init.d/gpm start
+
+try mouse support
+# zhcon
+check env "PTY_SLAVE", it stores slave tty name
+# env
+# mc
+
+How to use gpm when zhcon use libggi?
+1. when set para as display-fbdev:-input cause signal 11 occured.
+   export GGI_DISPLAY=display-fbdev:-novt
+2. any user api like mc can not open gpm.

@@ -1,0 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-04-24 17:11+0100\n"
+"PO-Revision-Date: 2001-12-17 22:36PRC\n"
+"Last-Translator: ejoy <ejoy@users.sourceforge.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=GBK\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
+
+#. mTitle = _("[");
+#. mTitle += (mpServer->IsFullChar() ? _("Full") : _("Half"));
+#. mTitle += (mpServer->IsFullComma() ? _("Ch") : _("En"));
+#. mTitle += _("]") + (mpServer->GetImmInfo()).mName;
+#: src/overspotclient.cpp:71 src/overspotclient.cpp:73
+#: src/overspotclient.cpp:216
+msgid "["
+msgstr "【"
+
+#: src/overspotclient.cpp:71 src/overspotclient.cpp:73
+#: src/overspotclient.cpp:218
+msgid "]"
+msgstr "】"
+
+#: src/configserver.cpp:27
+msgid "input option"
+msgstr "输入法选项"
+
+#: src/configserver.cpp:28
+msgid "Select Encode"
+msgstr "编码方式"
+
+#: src/configserver.cpp:29
+msgid "Encode-Detect Method"
+msgstr "内码识别方式"
+
+#: src/configserver.cpp:30
+msgid "Quit"
+msgstr "退出菜单"
+
+#: src/configserver.cpp:34 src/configserver.cpp:176
+msgid "Current Encode-Detect Method:"
+msgstr "当前内码识别方式:"
+
+#: src/configserver.cpp:39 src/configserver.cpp:48 src/configserver.cpp:58
+msgid "Back"
+msgstr "返回上级菜单"
+
+#: src/configserver.cpp:43
+msgid "Input Option:"
+msgstr "输入法选项:"
+
+#: src/configserver.cpp:44 src/configserver.cpp:241
+msgid "Auto Select Unique Word"
+msgstr "无重码自动上屏"
+
+#: src/configserver.cpp:46
+msgid "Input Encode"
+msgstr "输入法编码"
+
+#: src/configserver.cpp:52
+msgid "Please Select Encode:"
+msgstr "请选择编码方式:"
+
+#: src/configserver.cpp:63
+msgid "System Menu"
+msgstr "系统菜单"
+
+#: src/configserver.cpp:129
+msgid "Current Encode:"
+msgstr "当前编码方式:"
+
+#: src/configserver.cpp:217
+msgid "Current Input Encode(native only)"
+msgstr "当前输入法编码(native only)"
+
+#: src/inputmanager.cpp:821
+msgid "Press CTRL-ALT-H to exit help"
+msgstr "请按 CTRL-ALT-H 退出帮助窗口"
+
+#: src/inputmanager.cpp:822
+msgid "ALT -SPACE  Open/Close CJK mode"
+msgstr "ALT-SPACE   打开/关闭CJK方式"
+
+#: src/inputmanager.cpp:823
+msgid "CTRL-SPACE  Open/Close input method"
+msgstr "CTRL-SPACE  打开/关闭输入法"
+
+#: src/inputmanager.cpp:824
+msgid "SHIFT-PageUp/PageDown/Up/Down   Scroll & Display History"
+msgstr "SHIFT-PageUp/PageDown/Up/Down  浏览历史屏幕"
+
+#: src/inputmanager.cpp:826
+msgid "CTRL key:"
+msgstr "CTRL 功能键:"
+
+#: src/inputmanager.cpp:827
+msgid "F1  GB2312"
+msgstr ""
+
+#: src/inputmanager.cpp:828
+msgid "F2  GBK"
+msgstr ""
+
+#: src/inputmanager.cpp:829
+msgid "F3  BIG5"
+msgstr ""
+
+#: src/inputmanager.cpp:830
+msgid "F4  JIS"
+msgstr ""
+
+#: src/inputmanager.cpp:831
+msgid "F5  KSC"
+msgstr ""
+
+#: src/inputmanager.cpp:832
+msgid "F9  Switch & Auto Detect"
+msgstr "F9  切换自动编码方式"
+
+#: src/inputmanager.cpp:833
+msgid "F10 Sys Menu"
+msgstr "F10 菜单"
+
+#: src/inputmanager.cpp:834
+msgid "F7  Input Style"
+msgstr "F7  切换输入风格"
+
+#: src/inputmanager.cpp:835
+msgid "D   Exit zhcon"
+msgstr "D   退出zhcon"
+
+#: src/inputmanager.cpp:837
+msgid "Chinese/English Mode:"
+msgstr "中英文模式:"
+
+#: src/inputmanager.cpp:838
+msgid "CTRL-,  Full/Half Char"
+msgstr "Ctrl-,  切换全角/半角"
+
+#: src/inputmanager.cpp:839
+msgid "CTRL-.  Full/Half Comma"
+msgstr "Ctrl-.  切换中文标点"
+
+#: src/inputmanager.cpp:841
+msgid "CTRL-ALT-NUM:"
+msgstr "CTRL-ALT-数字键:"
+
+#: src/inputmanager.cpp:842
+msgid "0      Prompt Mode"
+msgstr "0      进入提示状态"
+
+#: src/inputmanager.cpp:843
+msgid "1..9   Select IME 1..9"
+msgstr "1..9   选择输入法1..9"
+
+#: src/inputmanager.cpp:845
+msgid "Special Input Key:"
+msgstr "输入功能键:"
+
+#: src/inputmanager.cpp:846
+msgid "CTRL-SHIFT  Next IME"
+msgstr "CTRL-SHIFT  切换下一个输入法"
+
+#: src/inputmanager.cpp:847
+msgid "SPACE       Select Number 0"
+msgstr "SPACE     当前汉字上屏"
+
+#: src/inputmanager.cpp:848
+msgid "+/-         Next/Prev page"
+msgstr "+/-         候选字前后翻页"
+
+#: src/inputmanager.cpp:849
+msgid "ESC         Reset Input Area"
+msgstr "ESC       清空输入条"
+
+#~ msgid "screen resolution"
+#~ msgstr "屏幕分辨率"
+
+#~ msgid "default encode"
+#~ msgstr "默认编码  "
+
+#~ msgid "Full"
+#~ msgstr "全角"
+
+#~ msgid "Half"
+#~ msgstr "半角"
+
+#~ msgid "Ch"
+#~ msgstr "。"
+
+#~ msgid "En"
+#~ msgstr ".,"
+
+#~ msgid "Please visit zhcon.gnuchina.org for more information."
+#~ msgstr "请访问zhcon的主页zhcon.gnuchina.org以获得更多信息。"
+
+#~ msgid "Zhcon supports GB2312,GBK,BIG5,JIS,KSC encode."
+#~ msgstr "zhcon支持GB2312,GBK,BIG5,JIS,KSC五种编码方式。"
+
+#~ msgid "You can use CTRL-ALT-0 to toggle prompt bar."
+#~ msgstr "可以使用CTRL-ALT-0切换提示条。"
+
+#~ msgid "Press CTRL-ALT-H for online help."
+#~ msgstr "请按 CTRL-ALT-H 激活帮助窗口。"
+
+#~ msgid "Zhcon supports 12,14,16,24 pixel fonts,you can change in zhcon.conf"
+#~ msgstr ""
+#~ "zhcon支持12,14,16,24等多种不同点阵字体，您可以在zhcon.conf中设定字体。"
+
+#~ msgid "You can use 24 pixel font on 17 monitor to get better visual effect."
+#~ msgstr "在17寸的显示器上可以使用1024X768和24点阵字体来获得更好的显示效果。"
+
+#~ msgid "Hit CTRL-D to quit zhcon."
+#~ msgstr "可以使用CTRL-D来退出zhcon."
+
+#~ msgid "You can find user manual in doc/."
+#~ msgstr "使用手册在doc/目录下。"
+
+#~ msgid ""
+#~ "Zhcon can use input methods from Unicon[TurboLinux],read manual for "
+#~ "detail."
+#~ msgstr ""
+#~ "zhcon能使用Unicon[TurboLinux]中的输入法，请阅读手册以获得更详细的信息。"
+
+#~ msgid "Zhcon is optimized for running under Linux FrameBuffer."
+#~ msgstr ""
+#~ "zhcon为Linux的FrameBuffer驱动作了优化，在FrameBuffer下可以得到最佳效果。"
+
+#~ msgid "Press CTRL-F7 to change input style"
+#~ msgstr "可以用CTRL-F7切换输入风格。"

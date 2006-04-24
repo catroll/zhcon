@@ -1,0 +1,12 @@
+
+BPSF Generator 0.1
+
+X서버의 폰트를 zhcon에서 사용하는 BPSF로 생성합니다.
+ksc5601.1987-0 인코딩의 16 x 16 폰트만 가능합니다.
+zhcon에 대한 것은 http://zhcon.gnuchina.org를 방문하세요.
+
+컴파일 : gcc getbpsf.c -o getbpsf -L/usr/X11R6/lib -lX11
+
+
+2002년 1월 20일
+이석민 <pchacker@pchacker.pe.kr>

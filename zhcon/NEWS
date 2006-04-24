@@ -1,0 +1,50 @@
+What's new in zhcon version 0.2.5?
+----------------------------------
+zhcon 0.2.5 features basic utf-8 support.
+    * Added: --utf8 option to enable utf-8 encoding filter to convert utf8
+      code to/from system encoding (gb2312 etc.) on the fly
+    * Added: --exec to launch a user program after start up
+    * Added: --drv to select which video driver to use
+    * Fixed: improved building script
+    * Removed: no tips will be shown
+
+What's new in zhcon version 0.2.4?
+----------------------------------
+zhcon 0.2.4 is a bugfix release, nothing new, it just works. 
+
+What's new in zhcon version 0.2.3?
+------------------------------------
+zhcon 0.2.3 is a bugfix release for FreeBSD.
+    * Fixed: build on FreeBSD 4.8 and 5.0
+    * Fixed: show "FreeBSD" on startup 
+    * Fixed: LC_ALL=zh_CN.EUC on FreeBSD
+    * Fixed: BSD locale dir on /usr/local/share/locale
+    A new command line argument can be specified to let 
+    zhcon run a program on start. For example:
+    zhcon screen
+    will run screen on start
+
+What's new in zhcon version 0.2.2?
+------------------------------------
+zhcon 0.2.2 is a bugfix release.
+    * add maintainer-mode to configure script
+    * add compiler optimize flag on x86 machine
+    * Fixed: configure & build bugs on rh8 & mdk9 caused by
+             missing -lcurses
+    * Fixed: forget to suid zhcon on some platform when install
+    * Fixed: inline linking bugs
+    No new features are added in this release.
+    You should see TODO for a future release plan.
+
+zhcon 0.2.1 is a bugfix release.
+
+New features:
+    * Add mouse support in Linux, based on gpm
+    * add some ime&font tools to tools directory
+    * Korean po file patch by Won Kyu Park <wkpark@chem.skku.ac.kr>
+    * Big5 po file by Andrew Lee <andrew@linux.org.tw>
+
+Bugs fixed:
+    * Fixed: Show start up message may display garbage
+    * Fixed: escape to scroll in FreeBSD
+    * Big5 input bug fix by Chun-hung Hsiao <chhsiao@ck.tp.edu.tw>

@@ -1,0 +1,15 @@
+There are so many people we want to express our gratitude.
+Special thank for:
+
+Chun-Ying Huang <huangant@cis.nctu.edu.tw>:      port some big5 imes from xcin.
+Yukihiro Nakai <ynakai@redhat.com>:              Japanese bug fix.
+Won Kyu Park <wkpark@chem.skku.ac.kr>:           Korean po file patch 
+Chun-hung Hsiao <chhsiao@ck.tp.edu.tw>:          Big5 input bug fix
+Andrew Lee <andrew@linux.org.tw>:                Big5 po file 
+Yu Guanghui <ygh@debian.org>:                    Debian's patch for non-intel machines
+statue <statue@webbbs.yzu.edu.tw>:               FreeBSD port test and maintain
+Rui He <herui_cce@yahoo.com>:                    cce's iconv filter source code
+
+We'll thank many other users who provide bug report, feedback and suggestion.
+If your name is omitted due to my carelessness, please mail to me:
+ejoy@users.sourceforge.net

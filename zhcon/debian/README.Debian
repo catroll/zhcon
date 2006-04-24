@@ -1,0 +1,19 @@
+zhcon for Debian
+----------------
+  zhcon need the framebuffer support, so you must rebuild the kernel
+with the framebuffer options by yourself. ;-)
+  You should set kernel "Code maturity level options" to " Prompt for 
+development and/or incomplete code/drivers",  select "Support for 
+frame buffer devices (EXPERIMENTAL)" option under "Console drivers",
+and choose one driver for your display card. Of cause, rebuild and
+start the new kernel. ;-)
+  Maybe you should install kernel-package, it's a tool used for build
+debian kernel packages. 
+
+ -- Yu Guanghui <ygh@debian.org>, Thu, 23 Aug 2001 11:30:33 +0800
+  
+  zhcon can work without framebuffer, but I didn't fully test. ZNPY
+is the default input method now. If it doesn't work for you, please
+reinstall zhcon, and permit it overwrite /etc/zhcon.conf.
+  
+ -- Yu Guanghui <ygh@debian.org>, Thu, 07 May 2003 02:14:26 +0800
