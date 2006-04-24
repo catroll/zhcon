@@ -1,0 +1,23 @@
+Source: zhcon
+Section: utils
+Priority: optional
+Maintainer: Yu Guanghui <ygh@debian.org>
+Build-Depends: debhelper (>= 4.1.16), libggi2-dev, unicon-im (>=3.0.4-9), libpth-dev, libncurses5-dev
+Standards-Version: 3.5.8
+
+Package: zhcon
+Architecture: any
+Depends: ${shlibs:Depends}, debconf, libpth2
+Conflicts: unicon-im (<< 3.0.4-9)
+Description: A Fast Console CJK System Using FrameBuffer
+ Zhcon is a fast Linux Console Chinese System which supports framebuffer 
+ device.It can display Chinese,Japanese or Korean double byte characters 
+ on console. 
+ Features include: 
+   Full support for Linux FrameBuffer device(from 640x480x8bpp to 
+     1024x768x32bpp) 
+   Multiple language support (GB2312,GBK,BIG5,JIS,KSCM) 
+   Auto-detect and convert between GB2312 and BIG5 encoding(like hztty) 
+   Hot key to change language encoding on the fly 
+   Can use input method from MS Windows 98 Chinese version or UCDOS for 
+     MS-DOS

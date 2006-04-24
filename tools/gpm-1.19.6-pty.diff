@@ -1,0 +1,18 @@
+diff -urN gpm-1.19.6/src/liblow.c gpm-1.19.6.new/src/liblow.c
+--- gpm-1.19.6/src/liblow.c	Tue Oct  2 04:08:47 2001
++++ gpm-1.19.6.new/src/liblow.c	Tue Apr 30 22:44:24 2002
+@@ -243,6 +243,14 @@
+           if (!t && isatty(1)) t = ttyname(1); /* stdout */
+           if (!t && isatty(2)) t = ttyname(2); /* stderr */
+           if (!t) goto err;
++
++          /* help api running in pty env, like zhcon*/
++	  /* get salve tty name and try open */
++	  if (!strncmp(t,"/dev/pts",8))
++            { /* for pty mode */
++              t = getenv("PTY_SLAVE"); /* get slave tty */
++              if (!t) goto err;
++            }
+           strcpy(tty,t);
+ 
+           /* replace with report() in gpm-1.21.x */

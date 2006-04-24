@@ -1,0 +1,249 @@
+2006-04-21 ejoy <ejoy@users.sourceforge.net>
+    * remove -e option, use command line arguments instead
+    * resolve warning message under gcc 3.4.4
+
+2006-04-19 ejoy <ejoy@users.sourceforge.net>
+    * Added: --drv command line option, now zhcon will run under X using ggi,
+             no need to set GGI_DISPLAY manually
+    * Removed: full/half/comma symbol in input window
+    * Removed: no tips will be shown
+
+2006-04-13 ejoy <ejoy@users.sourceforge.net>
+    * Fix input problem in utf8 mode
+    * Tested with latest libggi, runs fine under X
+      i.e. GGI_DEFMODE=640x480[8] GGI_DISPLAY=x:-nobuffer ./zhcon --utf8
+
+2006-04-08 ejoy <ejoy@users.sourceforge.net>
+    * clean up source code
+    * Added: use getopt_long() to parse command line option
+
+2006-04-07 ejoy <ejoy@users.sourceforge.net>
+    * Added: basic utf8<->default_encoding support using encfilter.c from CCE
+
+2006-03-09 ejoy <ejoy@users.sourceforge.net>
+    * Inrocporate various patches from debian
+    * Fixed: building problem using recent gcc
+    * Fixed: display problem on big endian machines, patch from Ben Sittler
+        <BSittler at KnowNow.com.anti-spam> (debian patch)
+
+2003-04-21 ejoy <ejoy@users.sourceforge.net>
+    * Add a command line argument (prog) to let
+      zhcon run a specific program on start
+      pointed out by "Ì¬ÇÙ"
+    * Add a tip on screen to README.BSD
+
+2003-04-13 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: build on FreeBSD 4.8 and 5.0
+    * Fixed: show "FreeBSD" on startup 
+    * Fixed: LC_ALL=zh_CN.EUC on FreeBSD
+    * Fixed: BSD locale dir on /usr/local/share/locale
+    * Add zh_CN.EUC po for FreeBSD
+    * update TODO, README.BSD
+
+2002-12-26 ejoy <ejoy@users.sourceforge.net>
+    * add maintainer-mode to configure script
+    * add compiler optimize flag on x86 machine
+    * Fixed: configure & build bugs on rh8 & mdk9 caused by
+             missing -lcurses
+    * Fixed: forget to suid zhcon on some platform when install
+    * Fixed: inline linking bugs
+    * update todo list
+
+2002-06-08 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: Cursor display bug in emacs
+
+2002-05-26 ejoy <ejoy@users.sourceforge.net>
+    * port to gcc 3.1,tested ok in VGA mode
+
+2002-05-23 huyong <ccpaging@etang.com>
+    * enable/disable console auto blank both linux and FreeBSD
+    * To use ggi, please export
+    * Fixed: mouse support cause ggi crash
+      export GGI_DISPLAY=display-fbdev:-novt
+    * Fixed: restore ggi color palette when vt switched back
+ 
+2002-05-15 ejoy <ejoy@users.sourceforge.net>
+    * Add USING_VGA define into configure script when compile under x86
+      machines
+    * Documentation update
+
+2002-05-05 huyong <ccpaging@etang.com>
+    * Add mouse support in Linux, based on gpm
+      Because not in graph mode now, zhcon use termcap to clean screen, and hide/show cursor
+    * Add special gpm-1.19.6 patch, help user api's mouse work well in pty mode
+      Read README.gpm to know how to use patch
+    * Add mouse support in FreeBSD, use signal & ioctl like libvgl
+    * handle vt leave and enter by only one signal
+    * Fixed: Show start up message may display garbage
+    * Fixed: escape to scroll in FreeBSD
+    
+2002-04-23 ejoy <ejoy@users.sourceforge.net>
+    * Merge the following patch into CVS tree
+    * Korean po file patch by Won Kyu Park <wkpark@chem.skku.ac.kr>
+    * Big5 input bug fix by Chun-hung Hsiao <chhsiao@ck.tp.edu.tw>
+    * Big5 po file by Andrew Lee <andrew@linux.org.tw>
+    * Change all KSCM to KSC encode for korean
+    * Debian's patch for non-intel machines by Yu Guanghui <ygh@debian.org>
+      now better support for Debian;)
+    * Merge BSD patch by statue(not fully patch,still need test!)
+    * add some ime&font tools to tools directory
+
+2002-02-15 ejoy <ejoy@users.sourceforge.net>
+    * Fixed:core dump when select nonexist font
+    
+2002-02-14 huyong <ccpaging@etang.com>
+    * Add overspot and nativebar color config support
+    * Complete FreeBSD port
+
+2002-02-06 Rick Lei <rick@uestc.edu.cn>
+    * set PREFIX option into config.h
+
+2002-02-03 ejoy <ejoy@users.sourceforge.net>
+    * add prefix option to configure script
+    * add --enable-debug option to configure script
+        now you can install zhcon with ./configure --prefix=/usr
+        --enable-debug=yes
+
+2002-01-14 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: keymap restore bug when exist zhcon
+
+2001-12-26 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: core dump bug when using auto-gb encode
+    * Add vim mode line option to every source file
+
+2001-12-22 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: core dump bug when not compiled with unicon
+
+2001-12-07 ejoy <ejoy@users.sourceforge.net>
+    * Fix bugs in configure
+    * Add a tex manual
+    * Add some tips
+    * Minor bug fixed
+    
+2001-11-03 ejoy <ejoy@users.sourceforge.net>
+    * Add rendom tips
+    * Add startup msg
+    * Fixed: Color bug in Debian dselect
+
+2001-10-23 ejoy <ejoy@users.sourceforge.net>
+    * Add prompt mode to inputmanager(CTRL-ALT-0)
+    * Fixed: core dump bug when wrong input file are selected
+
+2001-10-20 ejoy <ejoy@users.sourceforge.net>
+           huyong <ccpaging@online.sh.cn>
+    * Add new input style - native bar
+    * Add default input style define in zhcon.conf
+    * Add new frame type thin/thick to get good view of native bar
+    * Auto change VT size when changing input style
+    * Add data path defines of native input and unicon
+    * move cursor function from console to window, no cursor leaves
+      on screen now
+    * Other minor changes & fixes  
+    
+2001-10-10 ejoy <ejoy@users.sourceforge.net>
+    * Partly restore keymap when switch VT or hide input client
+    * Split Zhcon::Init() into InitXXX() functions
+    * Move zhcon.cfg to /etc/zhcon.conf
+    * Make configuration of ime in zhcon.conf easier
+
+2001-10-9 ejoy <ejoy@users.sourceforge.net>
+    * Use GNU gettext to display locale message(i18n support) in different
+      encodings.
+    * Fixed: some minor input bugs
+
+2001-10-3 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: Mandrake 8.0 setup bug and /usr/src/linux/make menuconfig bug
+    * Fixed: table line recognize bug in history mode   
+
+2001-10-1 ejoy <ejoy@users.sourceforge.net>
+    * Add Resize() to Window
+    * Rewrite overspot client,use a more friendly window placement algorithm
+    * Remove popwin.cpp
+
+2001-9-28 ejoy <ejoy@users.sourceforge.net>
+    * Now use ConfigServer to implement system menu configuration
+    
+2001-9-23 huyong <ccpaging@online.sh.cn>
+    * Merge InputWin, PopWin, and CandilistWin into window object. Make 
+      window's prog more clear and easy to use.
+    * Using /dev/tty* instead of /dev/console, check current output is real
+      tty or not, avoid run zhcon in pty mode(like mc's shell mode), or
+      pipe way.
+    * Add frame attribute to object window, frame's color can be defined in
+      zhcon.cfg.
+    * input window do not overlapped current line when cursor is at bottom.
+    * Fix cursor moving problem.
+    * Other minor changes & fixes
+
+2001-9-18 ejoy <ejoy@users.sourceforge.net>
+    * Implement InputServer/InputClient/NativeInputServer/UniconInputServer
+    * Add support for unicon input modules,share it with Chinput 3.0
+
+2001-8-24 Rick Lei <rick@uestc.edu.cn>
+    * Ported to FreeBSD :)
+    * Ported VGA driver from FreeBSD back to Linux. Now zhcon will
+      choose graphics mode on Linux automatically. That is to say, if
+      framebuffer is not available, zhcon will run under 640x480x16
+      colors mode.
+    * Applied Factory pattern to driver classes
+    * Other minor changes & fixes
+
+2001-8-17 ejoy <ejoy@users.sourceforge.net>
+          Hu Yong <ccpaging@online.sh.cn>
+    * Implement a new Chinese ideitify algorithm,more accurate
+    * Implement console overspot input style
+    * zhcon now use a new font format BPSF which is based on linux
+      PSF format.It supports big charset
+    * Implement cursor display, support type include under line, lower
+      third, lower half, two third, block
+    * Define cursor type in zhcon.cfg
+    * Support libggi as graphic interface. As libggi said, it can support
+      most of fbdev, SVGAlib, Glide library, AAlib, even X window.
+      But we just use it to support more fbdev now.
+    * Support VGA as fbdev, and VGA without fbdev. So it is not nessary
+      that recompile kernel
+    * Add support for vesa 24bpp mode
+    * Add table char's extend line handling to font object. Make graphic
+      interface more easy
+    * Fixed: compile bug on GNU GCC 3.0
+
+2001-7-24 Hu Yong <ccpaging@online.sh.cn>
+    * Rewrite a class FBCon to implement a better FrameBuffer
+      interface in C++ way(virtual function calls).
+
+2001-7-20 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: table line recognize bug in 16bpp,32bpp,thanks to Hu Yong for his patch.
+    * Source clean up.
+    * Add a man page,README.gb,README.big5,and two poem for test.
+    * Some minor improvement.
+
+2001-7-19 ejoy <ejoy@users.sourceforge.net>
+    * Add blanklineheight into zhcon.cfg
+    * Implement GB2312<->BIG5 auto-convert function
+      use code from Yu Guanghui's auto-converter
+    * Fixed: core dump when auto change encode
+    
+2001-7-18 ejoy <ejoy@users.sourceforge.net>
+    * Implement GB2312/BIG5 auto detect function.
+      use code from Yu Guanghui's auto-converter(judge.c)
+    * Many minor improvement.
+
+2001-7-16 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: inputbar always display when changing console.
+    * implement console history review
+      (SHIFT+PAGEUP,PAGEDOWN,ARROWUP,ARROWDOWN)
+
+2001-7-15 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: table char recognize bug
+    * Fixed: bash command line Chinese input bug
+    * Fixed: table line display bug in 8pp mode,thank to Hu Yong.
+    * Implement console blink attribute
+    * Some other improvement.
+
+2001-5-26 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: pingyin input bug
+    * Fixed: RedHat 7.1 compile problem(OPEN_MAX)
+
+2001-5-20 ejoy <ejoy@users.sourceforge.net>
+    * First public release.
+vi:ts=4:expandtab:tw=78

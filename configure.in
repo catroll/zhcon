@@ -1,0 +1,212 @@
+# Process this file with autoconf to produce a configure script.
+# vim600:fdm=marker
+
+AC_INIT(src/zhcon.cpp)
+AM_INIT_AUTOMAKE(zhcon, 0.2.5)
+AM_MAINTAINER_MODE
+AM_CONFIG_HEADER(config.h)
+
+dnl zhcon_datadir=@libdir@
+dnl AC_SUBST(zhcon_datadir)
+dnl AC_DEFINE_UNQUOTED(ZHCON_DATADIR,$zhcon_datadir)
+
+AC_PREFIX_DEFAULT(/usr/local)
+if test "x$prefix" = "xNONE"; then
+  prefix=$ac_default_prefix
+  ac_configure_args="$ac_configure_args --prefix $prefix"
+fi
+
+AC_DEFINE_UNQUOTED(PREFIX, "$prefix")
+
+dnl use C++ do lib checking
+AC_LANG_CPLUSPLUS
+
+dnl Check platform
+AC_CANONICAL_HOST
+
+case "$host" in
+*-*-linux*)
+      echo "Linux detected"
+      ZHCON_ARCH="Linux";;
+i?86-*-freebsd*)
+      echo "FreeBsd detected"
+      ZHCON_ARCH="FreeBSD"
+      dnl gcc 2.95 on freebsd does not search /usr/local/include
+      dnl while gcc 3.2 seems work fine
+      dnl workaround it here
+      LIBS="-L/usr/local/lib $LIBS"
+      CFLAGS="$CFLAGS -I/usr/local/include"
+      CXXFLAGS="$CXXFLAGS -I/usr/local/include";;
+*)
+    echo "Sorry, zhcon only supports Linux and x86 FreeBSD for now."
+    exit 1 ;;
+esac
+AC_DEFINE_UNQUOTED(PLATFORM, "$ZHCON_ARCH")
+
+dnl check for compiler flags and debug options {{{
+AC_ARG_ENABLE(debug,
+    [  --enable-debug          compile for debug,useful for developers.[default=no]],
+    [if test "x$enableval" = "xyes"; then
+         dnl AC_DEFINE(DEBUG) 
+         enable_debug=yes
+     else
+         enable_debug=no
+     fi])
+
+CFLAGS="$CFLAGS -funsigned-char -O2" 
+CXXFLAGS="$CXXFLAGS -funsigned-char -O2"
+if test $enable_debug = 'yes';then
+        CFLAGS="$CFLAGS -O0 -g3 -Wall" 
+        CXXFLAGS="$CXXFLAGS -O0 -g3 -Wall" 
+else
+    case "$host" in
+        i486-pc-*)
+        CFLAGS="$CFLAGS -march=i486" 
+        CXXFLAGS="$CXXFLAGS -march=i486";;
+        i586-pc-*)
+        CFLAGS="$CFLAGS -march=i586" 
+        CXXFLAGS="$CXXFLAGS -march=i586";;
+        i686-pc-*)
+        CFLAGS="$CFLAGS -march=i686" 
+        CXXFLAGS="$CXXFLAGS -march=i686";;
+    esac
+    CFLAGS="$CFLAGS -DNDEBUG -Wall" 
+    CXXFLAGS="$CXXFLAGS -DNDEBUG -Wall" 
+fi
+
+AC_SUBST(CFLAGS)
+AC_SUBST(CXXFLAGS)
+AC_SUBST(LIBS)
+dnl }}}
+
+dnl check for x86 vga support
+usevga=no
+case "$host" in
+i?86-*-*)
+    usevga=yes
+	AC_DEFINE(USING_VGA)
+    echo "x86 platform detected, compile with VGA support";;
+*)
+esac
+
+# Checks for programs.
+AC_PROG_AWK
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_CXX
+AC_PROG_CXXCPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AC_C_BIGENDIAN
+
+ALL_LINGUAS="zh_CN.GB2312 zh_CN.GBK zh_CN.EUC zh_TW.Big5 ko ja"
+AM_GNU_GETTEXT
+
+# Checks for header files.
+AC_CHECK_HEADERS([fcntl.h string.h sys/ioctl.h termios.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+
+# Checks for library functions.
+AC_FUNC_MMAP
+AC_CHECK_FUNCS([memmove memset strchr])
+
+dnl checks for libraries.
+
+dnl force using /usr/share/locale as destdir of *.po files
+dnl because /usr/local/share/locale does not work on most Linux
+ZHCON_LOCALE_DIR="/usr/share/locale"
+
+dnl bsd's gettext package is installed in /usr/local
+dnl intl and termcap are needed for bsd
+if test "$ZHCON_ARCH" = "FreeBSD"; then
+    AC_CHECK_LIB(c, i386_set_ioperm)
+    AC_CHECK_LIB(intl,main)
+    AC_CHECK_LIB(termcap,main)
+    ZHCON_LOCALE_DIR="/usr/local/share/locale"
+fi
+AC_SUBST(ZHCON_LOCALE_DIR)
+
+AC_CHECK_LIB(util, forkpty)
+AC_CHECK_LIB(curses, main)
+
+dnl for freebsd
+dnl AC_CHECK_LIB(c, i386_set_ioperm)
+
+dnl-----------------------------------------------------------------------
+dnl Checks for unicon library from TurboLinux Chinese.
+dnl-----------------------------------------------------------------------
+
+useunicon='yes'
+AC_CHECK_LIB(dl, main, ,useunicon="no")
+AC_CHECK_LIB(pth, main,,useunicon="no")
+AC_CHECK_LIB(immclient,main, ,useunicon="no")
+AC_CHECK_LIB(imm_server, main, ,useunicon="no")
+
+if test "$useunicon" = 'yes';then
+    AC_DEFINE(HAVE_UNICON_LIB)
+    LIBS="-L/usr/lib/unicon $LIBS"
+    #CPPFLAGS="$CPPFLAGS -I$ac_default_prefix/include"
+    LDFLAGS=" -Wl,-rpath=/usr/lib/unicon"
+    AC_SUBST(LIBS)
+    AC_SUBST(LDFLAGS)
+fi
+
+dnl-----------------------------------------------------------------------
+dnl Checks for gpm
+dnl-----------------------------------------------------------------------
+usegpm="yes"
+AC_CHECK_HEADERS(gpm.h,,usegpm="no")
+AC_CHECK_LIB(gpm,main,,usegpm="no")
+
+dnl-----------------------------------------------------------------------
+dnl Checks for libggi
+dnl-----------------------------------------------------------------------
+useggi="yes"
+AC_CHECK_HEADERS(ggi/ggi.h,,useggi="no")
+AC_CHECK_LIB(ggi, main,,useggi="no")
+if test "$useggi" = 'yes';then
+	AC_DEFINE(HAVE_GGI_LIB)
+fi
+
+AC_OUTPUT([Makefile
+        intl/Makefile
+        po/Makefile.in
+        doc/Makefile
+        doc/zhcon.1
+        debian/Makefile
+        tools/Makefile
+        font/Makefile
+        input/Makefile
+        src/Makefile
+        src/display/Makefile])
+
+cat <<EOF
+
+Configuration:
+    Target system:             ${host}
+    Source code location:      ${srcdir}
+    C++ Compiler:              ${CXX}
+    C++ Compiler flags:        ${CXXFLAGS}
+    C   Compiler:              ${CC}
+    C   Compiler flags:        ${CFLAGS}
+    VGA support:               ${usevga}
+    gpm moues support:         ${usegpm}
+    libggi support:            ${useggi}
+    unicon support:            ${useunicon}
+    zhcon binary dir:          `eval "echo \`eval \"echo ${bindir}\"\`"`
+    zhcon files dir:           `eval "echo \`eval \"echo ${libdir}/${PACKAGE}\"\`"`
+
+Config complete, now type make to build zhcon.
+Good Luck!
+EOF
+
+dnl if test "$useunicon" = "no" ; then
+    dnl AC_MSG_RESULT([You need to install unicon to compile zhcon with unicon support.
+dnl Please check if you have libimmclient.a ,libimm_server.so and libpth.so in /usr/lib.
+dnl ])
+dnl fi

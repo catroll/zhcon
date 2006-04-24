@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# Won kyu Park <wkpark@kldp.org>, 2002.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: zhcon 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-04-24 17:11+0100\n"
+"PO-Revision-Date: 2002-03-06 14:25+9000\n"
+"Last-Translator: Won-kyu Park <wkpark@kldp.org>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=EUC-KR\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. mTitle = _("[");
+#. mTitle += (mpServer->IsFullChar() ? _("Full") : _("Half"));
+#. mTitle += (mpServer->IsFullComma() ? _("Ch") : _("En"));
+#. mTitle += _("]") + (mpServer->GetImmInfo()).mName;
+#: src/overspotclient.cpp:71 src/overspotclient.cpp:73
+#: src/overspotclient.cpp:216
+msgid "["
+msgstr ""
+
+#: src/overspotclient.cpp:71 src/overspotclient.cpp:73
+#: src/overspotclient.cpp:218
+msgid "]"
+msgstr ""
+
+#: src/configserver.cpp:27
+msgid "input option"
+msgstr ""
+
+#: src/configserver.cpp:28
+msgid "Select Encode"
+msgstr ""
+
+#: src/configserver.cpp:29
+msgid "Encode-Detect Method"
+msgstr ""
+
+#: src/configserver.cpp:30
+msgid "Quit"
+msgstr "종료"
+
+#: src/configserver.cpp:34 src/configserver.cpp:176
+msgid "Current Encode-Detect Method:"
+msgstr ""
+
+#: src/configserver.cpp:39 src/configserver.cpp:48 src/configserver.cpp:58
+msgid "Back"
+msgstr ""
+
+#: src/configserver.cpp:43
+msgid "Input Option:"
+msgstr "입력 옵션:"
+
+#: src/configserver.cpp:44 src/configserver.cpp:241
+msgid "Auto Select Unique Word"
+msgstr ""
+
+#: src/configserver.cpp:46
+msgid "Input Encode"
+msgstr ""
+
+#: src/configserver.cpp:52
+msgid "Please Select Encode:"
+msgstr ""
+
+#: src/configserver.cpp:63
+msgid "System Menu"
+msgstr ""
+
+#: src/configserver.cpp:129
+msgid "Current Encode:"
+msgstr "현제 인코드:"
+
+#: src/configserver.cpp:217
+msgid "Current Input Encode(native only)"
+msgstr ""
+
+#: src/inputmanager.cpp:821
+msgid "Press CTRL-ALT-H to exit help"
+msgstr "도움말을 빠져나가려면 CTRL-ALT-H"
+
+#: src/inputmanager.cpp:822
+msgid "ALT -SPACE  Open/Close CJK mode"
+msgstr ""
+
+#: src/inputmanager.cpp:823
+msgid "CTRL-SPACE  Open/Close input method"
+msgstr ""
+
+#: src/inputmanager.cpp:824
+msgid "SHIFT-PageUp/PageDown/Up/Down   Scroll & Display History"
+msgstr ""
+
+#: src/inputmanager.cpp:826
+msgid "CTRL key:"
+msgstr ""
+
+#: src/inputmanager.cpp:827
+msgid "F1  GB2312"
+msgstr ""
+
+#: src/inputmanager.cpp:828
+msgid "F2  GBK"
+msgstr ""
+
+#: src/inputmanager.cpp:829
+msgid "F3  BIG5"
+msgstr ""
+
+#: src/inputmanager.cpp:830
+msgid "F4  JIS"
+msgstr ""
+
+#: src/inputmanager.cpp:831
+#, fuzzy
+msgid "F5  KSC"
+msgstr "F5  KSC"
+
+#: src/inputmanager.cpp:832
+msgid "F9  Switch & Auto Detect"
+msgstr ""
+
+#: src/inputmanager.cpp:833
+msgid "F10 Sys Menu"
+msgstr ""
+
+#: src/inputmanager.cpp:834
+msgid "F7  Input Style"
+msgstr "F7  입력 스타일"
+
+#: src/inputmanager.cpp:835
+msgid "D   Exit zhcon"
+msgstr "D   zhcon 종료"
+
+#: src/inputmanager.cpp:837
+msgid "Chinese/English Mode:"
+msgstr ""
+
+#: src/inputmanager.cpp:838
+msgid "CTRL-,  Full/Half Char"
+msgstr ""
+
+#: src/inputmanager.cpp:839
+msgid "CTRL-.  Full/Half Comma"
+msgstr ""
+
+#: src/inputmanager.cpp:841
+msgid "CTRL-ALT-NUM:"
+msgstr ""
+
+#: src/inputmanager.cpp:842
+msgid "0      Prompt Mode"
+msgstr ""
+
+#: src/inputmanager.cpp:843
+msgid "1..9   Select IME 1..9"
+msgstr ""
+
+#: src/inputmanager.cpp:845
+msgid "Special Input Key:"
+msgstr ""
+
+#: src/inputmanager.cpp:846
+msgid "CTRL-SHIFT  Next IME"
+msgstr ""
+
+#: src/inputmanager.cpp:847
+msgid "SPACE       Select Number 0"
+msgstr ""
+
+#: src/inputmanager.cpp:848
+msgid "+/-         Next/Prev page"
+msgstr "+/-         다음/이전 페이지"
+
+#: src/inputmanager.cpp:849
+msgid "ESC         Reset Input Area"
+msgstr "ESC         입력창 다시쓰기"
+
+#~ msgid "screen resolution"
+#~ msgstr "화면 해상도"
+
+#~ msgid "default encode"
+#~ msgstr "기본 인코딩"
+
+#~ msgid "Full"
+#~ msgstr "전각"
+
+#~ msgid "Half"
+#~ msgstr "반각"
+
+#~ msgid "Please visit zhcon.gnuchina.org for more information."
+#~ msgstr "더많은 정보는 zhcon.gnuchina.org를 통해 얻을 수 있습니다."
+
+#, fuzzy
+#~ msgid "Zhcon supports GB2312,GBK,BIG5,JIS,KSC encode."
+#~ msgstr "Zhcon은 GB2312,GBK,BIG5,JIS,KSC 인코딩을 지원합니다."
+
+#~ msgid "You can use CTRL-ALT-0 to toggle prompt bar."
+#~ msgstr "CTRL-ALT-0는 프롬프트 상태바를 토글합니다."
+
+#~ msgid "Press CTRL-ALT-H for online help."
+#~ msgstr "CTRL-ALT-H를 누르면 도움말."
+
+#~ msgid "Zhcon supports 12,14,16,24 pixel fonts,you can change in zhcon.conf"
+#~ msgstr ""
+#~ "Zhcon은 12,14,16,24 픽셀 폰트를 지원하며, zhcon.conf에서 고칠수 있습니다"
+
+#~ msgid "You can use 24 pixel font on 17 monitor to get better visual effect."
+#~ msgstr ""
+#~ "17인치 모니터에서 24픽셀 폰트를 쓰시면 좀더 나은 효과를 보게 됩니다."
+
+#~ msgid "Hit CTRL-D to quit zhcon."
+#~ msgstr "종료는 CTRL-D를 누르세요."
+
+#~ msgid "You can find user manual in doc/."
+#~ msgstr "사용자설명서는 doc/에서 찾으세요."
+
+#~ msgid "Zhcon is optimized for running under Linux FrameBuffer."
+#~ msgstr "Zhcon은 리눅스 프레임버퍼상에서 최적화 되었습니다."
+
+#~ msgid "Press CTRL-F7 to change input style"
+#~ msgstr "입력 스타을 바꾸려면 CTRL-F7을 누르세요"

@@ -1,0 +1,332 @@
+\documentclass[a4paper]{article}
+\usepackage{CJK}
+\usepackage{html}
+\begin{document}
+\begin{CJK*}{GB}{fs}
+\title{zhcon用户手册}
+\author{ejoy\\
+\htmladdnormallink{ejoy@users.sourceforge.net}{mailto:ejoy@users.sourceforge.net}} \maketitle \pagebreak
+\section{介绍}
+\subsection{Linux控制台中文化的现状}
+Linux是一个功能强大，性能出众，稳定可靠的操作系统，但Linux设计之初并未考虑到非英语国家使用者的需要，从而造成在Linux上使用中文的困难，极大制约了Linux在国内的应用和普及。随着Linux的普及，一些有识之士已经在中文化课题上展开了研究，从早期的chdrv,yact,wzce,cce到后来的蓝点，TurboLinux汉化内核，许多自由软件的爱好者为Linux中文化作出了贡献。
+
+基于字符界面的控制台本身并不支持点阵化字符输出，要想使之支持中文，必须将控制台切换到图形模式并加入中文解码支持。这些控制台中文解决方案使用的技术不尽相同，基本上可以分为外挂式和内核汉化两种方式。外挂式解决方案使用伪终端技术来挂接中文平台，优点是不用重新编译内核，缺点是兼容性不太好，特别是控制台的escape处理，相当困难。
+
+现有的中文平台在易用性，可扩展性，应用程序兼容性方面或多或少存在着不足，zhcon就是在这样的背景下诞生的。zhcon的目标是为中文Linux使用者提供一个便捷易用的中文环境。
+\subsection{zhcon简介}
+zhcon是一个工作在Linux控制台下的多内码中文平台。 它能够控制台上显示简体中文、繁体中文、日文、韩文等双字节字符。 当前版本的zhcon拥有以下特性:
+\begin{itemize}
+\item 广泛的硬件兼容性\\
+zhcon支持framebuffer,vga,libggi三种显示驱动方式，可以支持几乎所有的显卡。在内核编译有FrameBuffer驱动程序的情况下，zhcon将使用FrameBuffer做汉字输出，支持从640x480x8bpp 到 1024x768x32bpp的分辩率。如果您的内核没有提供FrameBuffer设备的支持或者工作在VGA文本模式，zhcon将使用内建的vga驱动，使显卡工作在640x480x16色模式下。此外，若系统中装有libggi，zhcon可以通过libggi支持更多的显示硬件和显示模式。
+
+
+\item 多内码支持，简繁体内码自动转换 \\
+zhcon支持GB2312,GBK,BIG5,JIS,KSCM等多种双字节编码方式，可使用热键在五种内码间动态切换，通过设置，zhcon可以自动检测GB2312和BIG5内码，并能在二者间自动转换(类似hztty)。
+
+
+\item GPM鼠标支持\\
+zhcon-0.2.1从开始加入了对gpm鼠标的支持。
+
+
+\item 多种输入法支持\\
+经过转换，zhcon能够用Windows98和UCDOS中的码表输入法(自带14种)。同时，zhcon还支持UNICON的输入法模块，可以和Chinput共享输入法。
+
+
+\item 二种输入风格\\
+zhcon在控制台实现了Overspot光标跟随方式和底部状态行方式二种输入风格，界面美观大方，并可自定义输入条的颜色。
+
+
+\item 优秀的中文制表符识别\\
+zhcon可以正确识别绝大多数应用程序(mc,linuxconf...)中的制表符号，不会出现乱码。
+
+
+\item 历史屏幕浏览\\
+在zhcon中可以随时使用SHIFT-PAGEUP,SHIFT-PAGEDOWN,SHIFT-UP,SHIFT-DOWN来浏览历史屏幕。
+
+
+\item 多点阵字体支持\\
+zhcon支持12点阵，14点阵，16点阵，24点阵等多种不同点阵字体的显示，可根据屏幕分辩率的不同选用不同点阵的字体来优化显示效果。
+
+
+\item 对FreeBSD的支持\\
+从V0.2开始zhcon正式增加了对FreeBSD的支持。
+\end{itemize}
+\subsection{zhcon的基本工作原理}
+通常 Linux 的控制台工作在文本模式下，要想在屏幕上正确显示，汉字必须将屏幕切换到 图形模式，这可以通过调用内核 FrameBuffer 驱动程序来实现。此外，还要能正确识别系 统输出到控制台的汉字信息，并调用汉字显示模块将其输出到屏幕。一种方法是像 DOS 下 的汉字系统所做的那样：利用系统时钟中断定时监视显存地址 B800:0000 处的显示缓冲区 ，动态识别缓冲区中的字符信息。这种方法要求修改内核中断和 TTY 驱动程序，实现起来 比较困难，而且需要直接操纵硬件视频缓冲区，大大影响了系统的可移植性和稳定性。另一 种方法就是本系统所采用的基于伪终端（ Pseudo-Terminals ）的外挂式解决方案。 伪终端（ Pseudo-Terminal ）是一种类似于终端的特殊的进程间通信通道（ channel ）。 通道的一端被称为主设备（ master pseudo-terminal device ），另一端被称为从设备。> 写入主设备的数据被发送到从设备，而写入从设备的数据也可从主设备读出，对用户来说就 好像自己实际上连接到了真正的计算机终端之上。简而言之，伪终端是位于虚拟终端和最终 终端设备之间的一种承担着输入输出转换功能的设备。
+
+伪终端诞生之初就得到了广泛应用，典型的例子是Telnet服务程序。Telnet是一种远程登录 服务，用户使用Telnet客户端程序通过网络登录到远程主机之上进行各种操作。Telnet服务 程序就是一个伪终端，一端连接到Telnet客户端程序，另一端连接到主机应用程序，客户和 应用程序之间通过伪终端进行对话。
+
+当应用程序需要从输入设备（键盘）读入数据时，它向控制台设备（ /dev/console ）发出 系统调用 read() ，接着内核 console 驱动响应该系统请求，从输入设备驱动程序（通常 为键盘驱动 keyboard.c ）获得输入数据，并将之返回给应用程序。而当应用程序需要想控 制台输出数据时，它通过 write() 系统调用将数据发送至 console 设备，再由内核 console 驱动转发到真正的输出设备（终端、打印机．．．．．．）上去。
+
+通过以上分析可以发现如果在应用程序从控制台设备（ /dev/console ）读入数据之前截获 键盘输入信息，并提交输入法模块处理，再将处理后得到的中英文信息发送至应用程序即可 完成中文输入。而在应用程序将输出数据写入 /dev/console 设备之前截获输出并交由汉字 识别模块处理，最终由汉字显示模块输出至屏幕，即可实现中英文输出。
+\section{下载和安装}
+\subsection{系统需求}
+zhcon是一个标准的Linux控制台程序，为了编译和运行zhcon您需要以下软件：
+
+\begin{itemize}
+\item  运行内核版本2.2以上的Linux系统(或FreeBSD)。建议在编译内核进加入对FrameBuffer的支持。
+GNU C++(gcc).建议使用gcc 2.95.2以上版本。
+\item GNU autoconf/automake
+\item UNICON\&Chinput(可选)
+\item libggi(可选)
+\item gpm(可选)
+\end{itemize}
+到目前为止，zhcon已经能在下列系统上正常运行：
+\begin{itemize}
+\item RedHat 6.2,7.1,7.3
+\item Mandrake 8.1,8.2
+\item RedFlag Linux
+\item Debian 2.2,woody,sid
+\item Slackware
+\item FreeBSD(???)
+\end{itemize}
+如果您在其它平台上的系统也能运行zhcon，请email告诉我们。
+\subsection{下载}
+最新版本的源代码可以从zhcon的站点:zhcon.gnuchina.org上下载。 下载的是一个源码包（以v0.2为例）：zhcon-0.2.tar.gz
+
+首先将源代码解开到一个临时目录：
+\begin{verbatim}
+tar zxf zhcon-0.2.tar.gz -C /tmp
+cd /tmp/zhcon-0.2
+\end{verbatim}
+然后运行configure脚本检查系统编译环境，创建Makefile:
+\begin{verbatim}
+./configure
+\end{verbatim}
+这时屏幕上会出现很多检测信息，如果没有问题的话接着执行make开始编译源代码：
+\begin{verbatim}
+make
+\end{verbatim}
+编译完成后切换到root用户执行make install安装可执行文件并删除临时目录:
+\begin{verbatim}
+su
+make install
+cd ..
+rm -rf /tmp/zhcon-0.2
+\end{verbatim}
+至此，zhcon已经成功安装到您的系统中。在控制台执行zhcon就能进入中文环境。 如果您想卸载zhcon请以root身份登陆并执行：
+\begin{verbatim}
+make uninstall
+\end{verbatim}
+就能完成卸载。
+\subsection{gpm鼠标支持}
+目前linux下的gpm驱动程序无法直接在zhcon下工作，需要对程序打补丁，在源码的tools目录下有一个已经打过补丁的gpm-1.19.6-patched.tar.gz.您可以直接安装.
+
+
+\section{使用指南}
+\subsection{设置显示模式}
+要在控制台上显示中文，首先要使控制台进入图形状态。zhcon目前支持FrameBuffer,libggi,vga三种图形驱动。zhcon在装载时会检测是否存在FrameBuffer图形驱动，如果没有，则直接对VGA进行控制，进入640X480的16色图形模式。这样，甚至不需要重新编译内核，也可以装载汉字系统。
+\begin{itemize}
+\item FrameBuffer:
+FrameBuffer可以译作“帧缓冲”，这是一种独立于硬件的抽象图形设备。 FrameBuffer的优点在于其高度的可移植性，易使用性上稳定性。 fbdrv是Linux kernel很早就提供的图形驱动，它甚至可以作为X Window的底层驱动，不过有些Linux的版本并没有把它编译到核心中，或是没有缺省的配置和使用它。简单地修改/etc/lilo.cfg，执行lilo -v，重启动计算机如果您幸运的话，就可以看到可爱的企鹅图标了。
+fbdrv可以支持很多老的显卡，如VGA，EGA，大力神单显等，也支持最新的VESA 2.0标准。所以，尽量选用fbdrv，可以得到最佳、最快的显示，使zhcon可以运行在640X480X8bpp到1024x768x32bpp，也就是说可以充分发挥显卡和显示屏的威力。使用Linux内核的FrameBuffer驱动（vesafb），可以轻松支持到1024X768X32bpp以上的分辩率。 FrameBuffer是推荐使用的驱动方式。 可以在系统启动时向kernel传送vga=mode-number的参数来激活FrameBuffer设备，如：
+lilo:linux vga=305 将会启动1024X768X8bpp模式。
+
+下表列出了不同色彩模式和相应的参数：
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+色深&
+640x400&
+640x480&
+800x600&
+1024x768&
+1280x1024&
+1600x1200\\
+\hline
+\hline
+4bits&
+?&
+?&
+0x302&
+?&
+?&
+?\\
+\hline
+8bits&
+0x300&
+0x301&
+0x303&
+0x305&
+0x307&
+0x31C\\
+\hline
+15bits&
+?&
+0x310&
+0x313&
+0x316&
+0x319&
+0x31D\\
+\hline
+16bits&
+?&
+0x311&
+0x314&
+0x317&
+0x31A&
+0x31E\\
+\hline
+24bits&
+?&
+0x312&
+0x315&
+0x318&
+0x31B&
+0x31F\\
+\hline
+32bits&
+?&
+?&
+?&
+?&
+?&
+?\\
+\hline
+\end{tabular}
+有关FrameBuffer更详细的信息请参阅：\textit{/usr/src/linux/Documentation/fb/vesafb.txt 和＜＜Framebuffer HOWTO＞＞}
+
+\item libggi:\\
+libggi是一个跨平台的绘图库。 由于fbdrv支持的显示类型很多，驱动方式又不统一，zhcon只内建了最常用的4bpp到32bpp的VESA 2.0支持，其它的显示类型则透过libggi的统一图形接口提供支持，所以zhcon实际上可以支持更多的fbdrv，只要是libggi支持的。
+在Linux上，libggi是通过调用FrameBuffer或svgalib来完成图形操作的，因此速度比较慢。 但在某些不支持FrameBuffer和vga的系统上可以通过libggi来完成绘图操作。
+
+要使用libggi，需要设置GGI\_DISPLAY环境变量，例如：
+在.bash\_profile中加入export GGI\_DISPLAY=display-fbdev:-noinput
+将使用libggi提供的接口来完成图形输出（使用FrameBuffer）。更详细的信息请参阅libggi的文档。
+
+\item vga:\\
+如果您的内核并没有编译进对FrameBuffer的支持，那么可以使用内建的vga驱动来使显目工作在640X480X16色的模式下。因为vga驱动是直接对显卡上的
+寄存器操作，所以这种方式的移植性很差。
+\end{itemize}
+
+系统启动时会按以下顺序来选择图形驱动：libggi（如果设置了环境变量GGI\_DISPLAY）,framebuffer,vga.
+\subsection{多内码支持}
+多内码支持 zhcon是一个多内码中文平台。目前支持GB2312,GBK,BIG5,JIS,KSCM等多种内码。 在系统运行时可以通过热键CTRL-F1 - CTRL-F5在以上几种编码方式间切换。
+
+zhcon还有一个内码自动转换的特性。可以在GB2312和BIG内码之间自动识别，转换。 使用CTRL-F9可以在manual,auto,auto-gb,auto-b5四种方式间切换：
+\begin{itemize}
+\item manual：需要手工切换内码
+\item auto:系统自动识别GB2312和BIG5码
+\item auto-gb:系统自动识别GB2312和BIG5码，并使用简体字库来显示汉字
+\item auto-b5:系统自动识别GB2312和BIG5码，并使用繁体字库来显示汉字
+\end{itemize}
+\textbf{\textit{注意：内码自动识别功能仅适用于GB2312和BIG5之间的自动转换和识别。} }
+\subsection{多点阵字体支持}
+与其它的控制台中文平台一样，zhcon使用点阵字体显示汉字。 目前，zhcon使用一种在标准的Linux PSF字体格式的基础上扩展了的BPSF格式来存放字库。对该格式的详细描述可参阅\textit{doc/bpsf.txt} 。
+
+当前版本的zhcon支持12,14,16,24等多种点阵字体。 在分辩率较低的情况下（640X480）可以考虑使用12点阵字体来显示汉字； 在高分辩率的情况下（>=1024X768）则可以使用24点阵字体来优化显示效果。
+
+所有字体文件都存放在\$prefix/lib/zhcon/font/目录下。 可以通过修改配置文件zhcon.conf或.zhconrc中的\textit{ascfont}
+和(\textit{gbkfont,big5font,jisfont,kscmfont}  )来选择不同的字体，如：
+\begin{verbatim}
+ascfont = font/asc16.bpsf
+gbfont = font/gb-16.bpsf
+gbkfont = font/gbk-16.bpsf
+big5font = font/big5-16.bpsf
+jisfont = font/jis-16.bpsf
+kscmfont = font/kscm-16.bpsf
+将使用16点阵字体。
+ascfont = font/asc12.bpsf
+gbfont = font/hzk12.bpsf
+将使用12点阵字体显示简体汉字。
+ascfont = font/asc24.bpsf
+gbfont = font/gb-24-kai.bpsf
+将使用24点阵楷体字显示简体汉字。
+\end{verbatim}
+\subsection{中文输入}
+zhcon支持两种输入风格：光标跟随方式和底部状态行方式。 光标跟随是指外码窗和候选窗始终在输入光标附近出现并自动跟随光标移动， 以使用户在中文输入时具有良好的视觉效果。 可以随时用CTRL-F7和CTRL-F8在这两种方式间切换。
+
+使用Ctrl+.（句号）键切换中英文标点状态。 使用CTRL+,（逗号）键切换全角/半角状态。
+
+系统运行时可随时使用CTRL-ALT-H键来激活帮助窗口查看热键定义。
+\subsection{在zhcon中使用unicon的输入法}
+unicon-im是TurboLinux中文版中使用的输入法模块，被使用在TurboLinux的UNICON（控制台中文环境）和Chinput 
+3.0中。其中的智能拼音输入法已成为大陆流行的输入法。zhcon除了内建的标准输入模块外，也对unicon-im的输入法模块提供支持，使用者可以根据自己的爱好选择顺手的输入法。
+如果您的系统已经安装了unicon-im模块，在执行configure脚本时会自动检测到unicon的安装位置，编译入对unicon-im的支持。之后启动zhcon，按CTRL-ALT-8就能使用智能拼音了!
+\subsection{配置文件}
+系统启动时先在用户目录寻找.zhconrc文件，如果没有该文件就使用\$prefix/lib/zhcon/zhcon.conf中的设置。
+
+您可以通过定制zhcon.conf/.zhconrc中的内容来个性化zhcon。 具体的定制信息请见该文件中的注释。
+\subsection{zhcon热键一览}
+下表列出了当前系统中可用的热键:
+
+\begin{tabular}{|c|c|}
+\hline
+按键&
+功能\\
+\hline
+\hline
+CTRL-SPACE&
+打开/关闭输入法\\
+\hline
+ALT -SPACE&
+打开/关闭CJK方式\\
+\hline
+CTRL\_F1&
+使用GB2312编码\\
+\hline
+CTRL\_F2&
+使用GBK编码\\
+\hline
+CTRL\_F3&
+使用BIG5编码\\
+\hline
+CTRL\_F4&
+使用JIS编码\\
+\hline
+CTRL\_F5&
+使用KSCM编码\\
+\hline
+CTRL\_F7&
+切换输入风格\\
+\hline
+CTRL\_F9&
+切换自动编码方式\\
+\hline
+CTRL\_F10&
+系统菜单\\
+\hline
+CTRL\_ALT\_H&
+帮助窗口\\
+\hline
+CTRL\_ALT\_0&
+进入提示状态\\
+\hline
+CTRL\_ALT\_1 -- CTRL\_ALT\_9&
+选择输入法\\
+\hline
+SHIFT\_PAGEUP&
+上卷半屏历史信息\\
+\hline
+SHIFT\_PAGEDOWN&
+下卷半屏历史信息\\
+\hline
+SHIFT\_ARROWUP&
+上卷一行历史信息\\
+\hline
+SHIFT\_ARROWDOWN&
+下卷一行历史信息\\
+\hline
+\end{tabular}
+\section{开发计划}
+编写zhcon的初衷是为广大Linux爱好者提供一个便捷的控制台中文使用环境目前zhcon仍远非完美，还在不断改进之中。 zhcon是开放源代码的自由软件，在GPL版权下发行，欢迎对Linux中文开发有兴趣的朋友加 入开发，愿我们的共同努力能为Linux中文化作出一点贡献。
+
+zhcon的主页在\htmladdnormallink{http://zhcon.gnuchina.org}{http://zhcon.gnuchina.org}.项目的开发页面在
+\htmladdnormallink{http://sourceforge.net/projects/zhcon}{http://sourceforge.net/projects/zhcon}通过该页面可以访问到zhcon项目的一些相
+关 信 息。 建议对zhcon开发有兴趣的朋友加入下面的邮件列表zhcon-devel，任何使用，开发方面的问题都可以发信到：
+\htmladdnormallink{zhcon-devel@lists.sourceforge.net}{mailto:zhcon-devel@lists.s
+ourceforge.net}.
+\section{致谢}
+在开发zhcon的过程中，我们得到了许多朋友的帮助，在此向他们表示真诚的感谢（见THANKS文件，如果不慎遗漏了您的名字，请发信给我们）。
+
+同时也要感谢
+\htmladdnormallink{www.gnuchina.org}{http://www.gnuchina.org}
+为zhcon提供主页空间。 
+\htmladdnormallink{linuxforum.net{http://linuxforum.net}
+为zhcon提供CVS服务。
+
+因为这两个站点背后的支持商都是TurboLinux，所以还要间接感谢TurboLinux公司对Linux中文化发展的支持。
+\htmladdnormallink{www.turbolinux.com.cn}{http://www.turbolinux.com.cn}.
+\end{CJK*}
+\end{document}
+

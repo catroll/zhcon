@@ -1,0 +1,5 @@
+Template: zhcon/rebuild_kernel
+Type: note
+_Description: You MUST rebuild kernel with framebuffer support.
+ Please read README.Debian and README. zhcon need a kernel supporting
+ framebuffer, you have to build it by yourself.

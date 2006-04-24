@@ -1,0 +1,143 @@
+         The PSF file-format for big charset
+
+     (C) 2001 Hu Yong <ccpaging@online.sh.cn>
+      
+This file documents the PSF file-format for big charset(called as BPSF as 
+below), as understood by version 0.15 and above of zhcon, and zhcon is orient
+language envirment for linux console. This file is based on PSF format used in
+Linux console utilites by Yann Dirson <dirson@debian.org>
+
+This file has revision number 0.1, and is dated 2001/08/08.
+Any useful additional information on BPSF files would be great.
+
+
+0. Changes:
+
+1. Summary
+
+   BPSF stands for PC Screen Font in orient language environment, and bases on
+PSF file format used in lct. We need understand PSF at first, and why we 
+extend it?
+
+   The PSF file basically contains one character-font, whose width is 8 
+pixels, i.e. each scan line in a character occupies 1 byte.
+
+   It may contain characters of any height between 0 and 255, though character
+heights lower than 8 or greater than 32 are not attested to exist or even be
+useful [more info needed on this].
+
+   Fonts can contain either 256 or 512 characters.
+
+   The file can optionally contain a unicode mapping-table, telling, for each
+character in the font, which UCS2 characters it can be used to display.
+
+   The "file mode" byte controls font size (256/512) and whether file contains
+a unicode mapping table.
+
+   When we developing zhcon, we have two main problems.
+
+   The first is font width, we need to get more choice to display beautiful 
+and more chars on console, the width may be any between 12 to 24, even 48.
+
+   The second is chars count in font. Chinese charset is more then 8,000 chars,
+PSF can only hold 512 characters.
+
+   According Yann Dirson's document, XPSF(the extend of PSF) can hold on big 
+charset. We may change BPSF to XPSF in the future, but now we can not wait. 
+You can not expect BPSF solve all problem for the console font, and it works
+for big charset only.
+
+	BPSF extend "file mode" byte. BPSF is same as PSF when "file mode" between 
+0 to 3, and follow only one byte, char height. If "file mode" is 4 or 5, there 
+is six bytes followed, include char width, char height, and number of chars.
+  
+
+2. History
+
+   The PSF file format was designed by H. Peter Anvin <hpa@transmeta.com> in
+1989 or so for his DOS screen font editor, FONTEDIT.EXE. When he became 
+involved with Linux, he used it for the Linux font stuff he worked with, 
+released a binary of FONTEDIT.EXE for free distribution, and added the Unicode
+table to the spec.
+
+
+3. Known programs understanding this file-format.
+
+   Only zhcon can read and/or write BPSF files. 
+   
+   The program in the Linux console utilities, like:
+      setfont (R/W)
+      psfaddtable (R/W)
+      psfstriptable (R/W)
+      psfgettable (R)
+   can read and/or write PSF files. Those program would show error message 
+when involved in BPSF font file.
+
+4. Technical data
+
+   The file format is described here in sort-of EBNF notation. Upper-case
+WORDS represent terminal symbols, i.e. C types; lower-case words represent
+non-terminal symbols, i.e. symbols defined in terms of other symbols.
+  [sym] is an optional symbol
+  sym1 sym2   is sym1 followed by sym2
+  sym1 | sym2 is either sym1 or sym2
+    {sym} is a symbol that can be repeated 0 or more times
+  {sym}*N is a symbol that must be repeated N times
+    Comments are introduced with a # sign.
+
+
+ # The data (U_SHORT's) are stored in LITTLE_ENDIAN byte order.
+
+  psf_file =  psf_header
+    raw_fontdata
+     [unicode_data]
+      
+
+ psf_header =   CHAR = 0x36  CHAR = 0x04   # magic number
+      filemode
+      font info
+     
+  filemode =  CHAR     # 0 : 256 characters, no unicode_data
+                       # 1 : 512 characters, no unicode_data
+                       # 2 : 256 characters, with unicode_data
+                       # 3 : 512 characters, with unicode_data
+                       # 4 : big charset, no unicode_data
+                       # 5 : big charset, with unicode_data
+
+   # file mode 4 or 5 is the extend of PSF
+   font info :
+      fontheight              # filemode is between 0 to 3
+      | big_charset_info      # filemode is between 4 to 5
+ 
+   fontheight =   CHAR  # measured in scan lines
+
+   big_charset_info :
+      charwidth
+      charheight
+      fontsize
+      
+   charwidth :
+      u8       # char width in bits
+      
+   charheight :
+      u8       # char height in bits
+      
+   fontsize :
+      u32      # number of chars in font
+
+   raw_fontdata = {char_data}*<fontsize>
+
+   char_data = {row_data}*<charheight>
+   
+   row_data = scan line bits expand to byte, i.e., 1 byte when charwidth is 
+less then 8, 2 bytes when charwidth between 9 to 16, and so on. The expand bit
+is 0. This may cost more memory, but it really efficent when display.
+
+   # unicode_data is just behind raw_fontdata
+
+   unicode_data = { unicode_array psf_separator }*<fontsize>
+
+   unicode_array =   { unicode }          # any necessary number of times
+
+   unicode =   U_SHORT              # UCS2 code
+   psf_separator =   unicode = 0xFFFF

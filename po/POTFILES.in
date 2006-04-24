@@ -1,0 +1,5 @@
+# List of source files containing translatable strings.
+src/overspotclient.cpp
+src/configserver.cpp
+src/zhcon.cpp
+src/inputmanager.cpp

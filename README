@@ -1,0 +1,125 @@
+INTRODUCTION
+============
+Zhcon is a fast Linux Console Chinese System which supports
+framebuffer device.It can display Chinese, Japanese or Korean
+double byte characters.Supported language encodings include:
+GB2312, GBK, BIG5, JIS and KSC.
+It can also use input methods(table based) from M$ pwin98 and
+UCDOS for M$-DOG.
+
+LICENSE
+=======
+All the source codes are published under GPL!(see COPYING)
+The input methods used in zhcon are originally written by
+ejoy<ejoy@users.sf.net> and are published under GPL too!
+However currently the words of the ime are converted from M$ windows
+& UCDOS. Future version of zhcon will use its own input table to
+purify its *free* spirit.
+The bpsf font format used in zhcon is proposed by one of its core
+developers Hu Yong<ccpaging@etang.com> based on psf format.See doc/
+bpsf.txt for more detail.
+
+DOWNLOAD & INSTALL
+==================
+Please visit http://zhcon.gnuchina.org for latest package download information.
+Development info can be found at http://sourceforge.net/projects/zhcon
+
+See INSTALL for install information.
+Full user manual is located in doc/
+
+FAQ & BUG REPORT
+================
+There's a online FAQ available at http://zhcon.gnuchina.org
+You should read the FAQ when you encounter problem.
+If you are sure you find a bug in zhcon please report it to 
+zhcon-devel@lists.sourceforge.net
+Please include detail description of the problem you found as well
+as you system info (uname -a) so we can reproduce the bug.
+Send us patches if you can!
+
+BSD NOTICE!
+===========
+This version includes a beta FreeBSD port and has been tested on 
+FreeBSD 4.8. You should read README.BSD before you start.
+Mouse cut & paste should work fine on FreeBSD platform, but Linux gpm
+support is still in progress, see below.
+
+GPM MOUSE
+=========
+For guys who want to use zhcon with gpm mouse support, please
+read README.gpm before you start. You can try but we do not promise 
+it will work on your machine.
+
+QUICK FB SETUP
+==============
+Set console as fb device
+Add line to /etc/lilo.conf as below:
+
+vga=0x303
+image=/boot/vmlinuz
+    label=FrameBuf
+
+#lilo -v
+#reboot
+
+The  following table shows the mode numbers you can input at
+the VGA prompt  or  for use with the LILO program. (actually
+these  numbers  are plus 0x200 to make it easier to refer to
+the table)
+
+Colours 640x400 640x480 800x600 1024x768 1280x1024 1600x1200
+-------+----------------------------------------------------
+ 4 bits|   ?       ?     0x302      ?        ?         ?
+ 8 bits| 0x300   0x301   0x303    0x305    0x307     0x31C
+15 bits|   ?     0x310   0x313    0x316    0x319     0x31D
+16 bits|   ?     0x311   0x314    0x317    0x31A     0x31E
+24 bits|   ?     0x312   0x315    0x318    0x31B     0x31F
+32 bits|   ?       ?       ?        ?        ?         ?
+
+Key:  8 bits = 256 colours,  15 bits = 32, 768 colours,  
+16 bits = 65, 536 colours,   24  bits  = 16.8 million colours, 
+32 bits - same as 24 bits,  but  the extra 8 bits can be used
+for  other  things,  and fits perfectly with a 32 bit PCI/VLB
+/EISA bus.
+
+Additional  modes are at the discretion of the manufacturer, 
+as the VESA 2.0 document only defines modes up to 0x31F. You
+may  need  to  do  some  fiddling around to find these extra 
+modes.
+
+KEY SUMMAY
+==========
+CTRL_ALT_H:     pop up online help
+CTRL_SPACE:     open/close input method
+ALT_SPACE:      show/hide input bar(open/close CJK mode)
+CTRL_, :         toggle Full/Half char mode
+CTRL_.:         toggle Chinese symbol
+CTRL_F1:        set encode to GB2312
+CTRL_F2:        set encode to GBK
+CTRL_F3:        set encode to BIG5
+CTRL_F4:        set encode to JIS
+CTRL_F5:        set encode to KSC
+CTRL_F7:        toggle input style
+CTRL_F9:        toggle GB2312/BIG5 auto-detect mode
+CTRL_F10:       menu mode
+CTRL_ALT_1 - CTRL_ALT_9: switch to input method 1 to 9
+CTRL_ALT_0:     English mode
+
+History mode keys:
+SHIFT_PAGEUP:       scroll up half screen in history
+SHIFT_PAGEDOWN:     scroll down half screen in history
+SHIFT_ARROWUP:      scroll up one line in history
+SHIFT_ARROWDOWN:    scroll down one in history
+
+THANKS
+======
+When I write this program the following source code help me 
+a lot,  so I must thank their authors here.
+chdrv, jmce   //they show me how a Chinese console works.
+unicon        //language encoding and font support,  great!
+/usr/src/linux/video/fbcon-*.c        //low level framebuffer routine.
+/usr/src/linux/drivers/char/console.c // VT102 implementation. 
+autoconvert  //GB2312/BIG5 auto-detect&convert
+                                ejoy <ejoy@users.sf.net>
+
+vi:ts=4:expandtab

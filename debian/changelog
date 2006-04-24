@@ -1,0 +1,163 @@
+zhcon (1:0.2.3-8.1) unstable; urgency=HIGH
+
+  * NMU
+  * Forward ported patch from security team to prevent unauthorised file
+    access [src/configfile.cpp, CAN-2005-0072]. Closes: #292210
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 26 Jan 2005 15:10:36 -0500
+
+zhcon (1:0.2.3-8) unstable; urgency=low
+
+  * patch for gcc-3.4. (closes:Bug#264151) 
+  * added ja.po. (closes:Bug#259166)
+
+ -- Yu Guanghui <ygh@debian.org>  Sat,  7 Aug 2004 23:52:49 +0800
+
+zhcon (1:0.2.3-7) unstable; urgency=low
+
+  * Apply patch for PowerPC or other big endianness machines. Thanks
+    for Ben Sittler <BSittler at KnowNow.com.anti-spam>'s patch.
+    (closes:Bug#227640)
+
+ -- Yu Guanghui <ygh@debian.org>  Sun, 18 Jan 2004 21:48:25 +0800
+
+zhcon (1:0.2.3-6.2) unstable; urgency=low
+
+  * Non-maintainer upload
+  * Switch to gettext for debconf templates. Closes: #198270
+  * French translation for debconf templates. Closes: #198751
+  * Russian translation for debconf templates. Closes: #136609
+  * German translation for debconf templates. Closes: #112355
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 26 Aug 2003 11:51:58 +0200
+
+zhcon (1:0.2.3-6.1) unstable; urgency=low
+
+  * Non-Maintainer Upload
+  * Apply patch from Matt Kraai to fix build failure under GCC 3.3.
+    (Closes: #200071)
+
+ -- Joel Baker <fenton@debian.org>  Sat, 23 Aug 2003 11:58:16 -0600
+
+zhcon (1:0.2.3-6) unstable; urgency=low
+
+  * Fix wrong .pyinput owner. 
+  * Make zhcon work with screen.
+
+ -- Yu Guanghui <ygh@debian.org>  Wed, 14 May 2003 22:45:39 +0800
+
+zhcon (1:0.2.3-5) unstable; urgency=low
+
+  * Build with unicon-im 3.0.4_9. 
+
+ -- Yu Guanghui <ygh@debian.org>  Sat, 10 May 2003 17:04:45 +0800
+
+zhcon (1:0.2.3-4) unstable; urgency=low
+
+  * Fixed build error. 
+
+ -- Yu Guanghui <ygh@debian.org>  Thu,  8 May 2003 01:11:34 +0800
+
+zhcon (1:0.2.3-3) unstable; urgency=low
+
+  * Fixed build error. 
+
+ -- Yu Guanghui <ygh@debian.org>  Wed,  7 May 2003 19:12:58 +0800
+
+zhcon (1:0.2.3-2) unstable; urgency=low
+
+  * Add new build depend libncurses5-dev 
+
+ -- Yu Guanghui <ygh@debian.org>  Wed,  7 May 2003 12:09:40 +0800
+
+zhcon (1:0.2.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * unicon input method work right now.
+  * new words can be saved when use ZNPY
+  * Change ZNPY as default input method.
+
+ -- Yu Guanghui <ygh@debian.org>  Wed,  7 May 2003 01:09:46 +0800
+
+zhcon (1:0.2-4) unstable; urgency=low
+
+  * Fixed some building error. 
+
+ -- Yu Guanghui <ygh@debian.org>  Tue, 19 Mar 2002 18:52:04 +0800
+
+zhcon (1:0.2-3) unstable; urgency=low
+
+  * Ok, since we don't really need VGA mode and it causes portable
+    problems, I will remove VGA support. (closes:Bug#138711)
+
+ -- Yu Guanghui <ygh@debian.org>  Mon, 18 Mar 2002 19:15:35 +0800
+
+zhcon (1:0.2-2) unstable; urgency=low
+
+  * Modified configure.in, zhcon should run on any arch linux.
+  	(closes:Bug#138505)
+
+ -- Yu Guanghui <ygh@debian.org>  Sat, 16 Mar 2002 10:07:39 +0800
+
+zhcon (1:0.2-1) unstable; urgency=low
+
+  * correct the debian version number.
+
+ -- Yu Guanghui <ygh@debian.org>  Mon, 11 Mar 2002 19:08:12 +0800
+
+zhcon (0.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Build without unicon support. zhcon 0.2 still have trouble with unicon
+  input method.
+
+ -- Yu Guanghui <ygh@debian.org>  Sun, 10 Mar 2002 19:37:19 +0800
+
+zhcon (0.2b2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Yu Guanghui <ygh@debian.org>  Sun,  3 Feb 2002 16:01:14 +0800
+
+zhcon (0.14-5) unstable; urgency=low
+
+  * Updated config.{sub,guess}. (closes:Bug#117421) 
+
+ -- Yu Guanghui <ygh@debian.org>  Tue, 30 Oct 2001 19:45:25 +0800
+
+zhcon (0.14-4) unstable; urgency=low
+
+  * Removed the ltconfig flag --no-verify. This caused compile
+    problem in other platform expect i386.
+
+ -- Yu Guanghui <ygh@debian.org>  Sat, 27 Oct 2001 19:25:28 +0800
+
+zhcon (0.14-3) unstable; urgency=low
+
+  * I only test it under i386 arch. If anyone successly
+    use zhcon in other platform, please notice me.
+
+ -- Yu Guanghui <ygh@debian.org>  Wed, 24 Oct 2001 15:54:06 +0800
+
+zhcon (0.14-2) unstable; urgency=low
+
+  * Add spanish template file. (closes:Bug#110756) 
+  * Use the correct names for MS products.(closes:Bug#110052)
+
+ -- Yu Guanghui <ygh@debian.org>  Wed, 12 Sep 2001 17:43:29 +0800
+
+zhcon (0.14-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Yu Guanghui <ygh@debian.org>  Thu, 23 Aug 2001 12:00:00 +0800
+
+zhcon (0.13-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Yu Guanghui <ygh@debian.org>  Thu, 23 Aug 2001 11:30:33 +0800
+
+Local variables:
+mode: debian-changelog
+End:
