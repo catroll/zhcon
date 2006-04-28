@@ -28,6 +28,10 @@
  * 
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -37,6 +41,10 @@
 #include "encfilter.h"
 
 #ifdef HAVE_ICONV
+
+#ifndef ICONV_CONST
+#error ICONV_CONST not defined
+#endif /* ICONV_CONST */
 
 #define BUFSIZ 8192
 int UseEncodingFilter;  /* use filter such as UTF-8 */
@@ -85,7 +93,7 @@ int SetupEncodingFilter(const char* sysCoding)
 int DoEncodingFilter(int dir, char *inbuf, size_t inlen)
 {
 	size_t ret;
-	char *oldinbuf = inbuf;
+	ICONV_CONST char *oldinbuf = (ICONV_CONST char*)inbuf;
 	char *outbuf = EncodingFilterBuff;
 
 	if (!inbuf || inlen <= 0) return 0;

@@ -137,6 +137,17 @@ AC_CHECK_LIB(curses, main)
 dnl for freebsd
 dnl AC_CHECK_LIB(c, i386_set_ioperm)
 
+dnl check for iconv
+if test "$am_cv_func_iconv" != 'yes'; then
+    echo ""
+    echo "*** iconv() not found on this system, which is required for utf8 support"
+    echo "***  please install libiconv from"
+    echo "*** http://www.gnu.org/software/libiconv/ first!"
+    echo ""
+    exit 1
+fi
+
+
 dnl-----------------------------------------------------------------------
 dnl Checks for unicon library from TurboLinux Chinese.
 dnl-----------------------------------------------------------------------
@@ -204,9 +215,3 @@ Configuration:
 Config complete, now type make to build zhcon.
 Good Luck!
 EOF
-
-dnl if test "$useunicon" = "no" ; then
-    dnl AC_MSG_RESULT([You need to install unicon to compile zhcon with unicon support.
-dnl Please check if you have libimmclient.a ,libimm_server.so and libpth.so in /usr/lib.
-dnl ])
-dnl fi
