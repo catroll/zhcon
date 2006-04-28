@@ -12,13 +12,10 @@ zhcon is not bug free. Here's some minor bug found so far:
 * screen may get blank when quiting from VGA16 mode 
 
 Todo (sorted by priority):
-* rewrite zhcon using ucs2 as internal encoding
-* rewrite zhcon's VT parser using gterm parser, see http://gterm.sf.net
-* use FreeType to render TTF font, so we can display fonts in different points
 * input interface clean up
-* implement a real intelligent pinyin(wubi) input method (in planning)
-* restore previous video mode when quit
+* port to X-Window (yet another CJK term), using SDL
 * complete bsd port
-* port to X-Window(yet another CJK term), may work together with gterm project
-* port to MS Windows under cygwin
+* rewrite zhcon using ucs2 as internal encoding (pending)
+* use FreeType to render TTF font, so we can display fonts in different points
+* restore previous video mode when quit
 * speed optimize

@@ -2,11 +2,11 @@
 #### For Linux User ####
 ########################
 
-First, make sure you have your kernel compiled with framebuffer support
-this version can only work with 8bpp, 15bpp, 16bpp,  24bpp,  and 32bpp mode
-other color depth need libggi supported.
-see /usr/src/linux/Documentation/fb/vesafb.txt for more detials on
-using framebuffer device.
+zhcon can use VGA device on intel machines. Framebuffer device is required for
+non-intel machines, and usually gives the best performance.
+
+see /usr/src/linux/Documentation/fb/vesafb.txt for more detials on using
+framebuffer device.
 
 1) $ ./configure
 2) $ make
@@ -25,6 +25,8 @@ enjoy!
 ###########################
 ####  For FreeBSD User ####
 ###########################
+
+!!!Please note at this point the BSD support is broken!!!
 
 First,  make sure you have installed gmake,  or GNU Make.
 The FreeBSD's make/pmake may work,  but I don't promise that.

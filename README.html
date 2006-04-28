@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<title>zhcon -- A Fast CJK Virtual Console Environment</title>
+<style type="text/css">
+
+/*
+:Authors: Ian Bicking, Michael Foord
+:Contact: fuzzyman@voidspace.org.uk
+:Date: 2005/08/26 
+:Version: 0.1.0
+:Copyright: This stylesheet has been placed in the public domain.
+
+Stylesheet for Docutils.
+Based on ``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  border: thin solid black;
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  -moz-border-radius: 8px;
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  border: medium solid black;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffffff;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  border: medium solid black;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #eeeeee;
+  border: thick solid black;
+  -moz-border-radius: 20px;
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin black solid;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 100%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document" id="zhcon-a-fast-cjk-virtual-console-environment">
+<h1 class="title">zhcon -- A Fast CJK Virtual Console Environment</h1>
+<!-- rst3: filename: ../README.html -->
+<div class="contents topic">
+<p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
+<ul class="simple">
+<li><a class="reference" href="#what-is-zhcon" id="id1" name="id1">What is zhcon?</a></li>
+<li><a class="reference" href="#license" id="id2" name="id2">License</a></li>
+<li><a class="reference" href="#download-and-install" id="id3" name="id3">Download and Install</a></li>
+<li><a class="reference" href="#quick-framebuffer-setup" id="id4" name="id4">Quick Framebuffer Setup</a></li>
+<li><a class="reference" href="#hotkeys" id="id5" name="id5">Hotkeys</a></li>
+<li><a class="reference" href="#thanks" id="id6" name="id6">Thanks</a></li>
+</ul>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id1" id="what-is-zhcon" name="what-is-zhcon">What is zhcon?</a></h1>
+<p>Zhcon is a fast virtual console Chinese environment running on modern unix systems like Linux and FreeBSD. It can display Chinese, Japanese or Korean double byte characters via VGA, framebuffer or libGGI. Supported language encodings include: GB2312, GBK, BIG5, JIS, KSC and UTF-8. It can also use input methods(table based) from M$ pwin98 and UCDOS for M$-DOG. More information can be found on <a class="reference" href="http://zhcon.sourceforge.net">http://zhcon.sourceforge.net</a></p>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id2" id="license" name="license">License</a></h1>
+<p>All the source codes are published under GPL!(see COPYING)
+The input methods used in zhcon are originally written by
+ejoy&lt;<a class="reference" href="mailto:ejoy&#64;users.sf.net">ejoy&#64;users.sf.net</a>&gt; and are published under GPL too!
+However currently the words of the ime are converted from M$ windows
+&amp; UCDOS. Future version of zhcon will use its own input table to
+purify its <em>free</em> spirit.
+The bpsf font format used in zhcon is proposed by one of its core
+developers Hu Yong&lt;<a class="reference" href="mailto:ccpaging&#64;etang.com">ccpaging&#64;etang.com</a>&gt; based on psf format.See doc/
+bpsf.txt for more detail.</p>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id3" id="download-and-install" name="download-and-install">Download and Install</a></h1>
+<p>The release source tar ball can be found on zhcon's project page onsourceforget:http://sourceforge.net/projects/zhcon. Many distributions, such as Debian and FreeBSD, also provide pre-compiled binary package for quick install.</p>
+<dl class="docutils">
+<dt>The latest source code can be obtained from Subversion Repository:</dt>
+<dd>svn co <a class="reference" href="https://svn.sourceforge.net/svnroot/zhcon">https://svn.sourceforge.net/svnroot/zhcon</a> zhcon</dd>
+</dl>
+<p>See file INSTALL for install information.</p>
+<p>Full user manual (slightly out-dated) is located in doc/</p>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id4" id="quick-framebuffer-setup" name="quick-framebuffer-setup">Quick Framebuffer Setup</a></h1>
+<p>Set console as fb device
+Add line to /etc/lilo.conf as below:</p>
+<p>vga=0x303
+image=/boot/vmlinuz
+label=FrameBuf</p>
+<p>#lilo -v
+#reboot</p>
+<p>The  following table shows the mode numbers you can input at
+the VGA prompt  or  for use with the LILO program. (actually
+these  numbers  are plus 0x200 to make it easier to refer to
+the table)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="14%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Resolotion</th>
+<th class="head">640x400</th>
+<th class="head">640x480</th>
+<th class="head">800x600</th>
+<th class="head">1024x768</th>
+<th class="head">1280x1024</th>
+<th class="head">1600x1200</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>4 bits</td>
+<td>?</td>
+<td>?</td>
+<td>0x302</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr><td>8 bits</td>
+<td>0x300</td>
+<td>0x301</td>
+<td>0x303</td>
+<td>0x305</td>
+<td>0x307</td>
+<td>0x31C</td>
+</tr>
+<tr><td>15 bits</td>
+<td>?</td>
+<td>0x310</td>
+<td>0x313</td>
+<td>0x316</td>
+<td>0x319</td>
+<td>0x31D</td>
+</tr>
+<tr><td>16 bits</td>
+<td>?</td>
+<td>0x311</td>
+<td>0x314</td>
+<td>0x317</td>
+<td>0x31A</td>
+<td>0x31E</td>
+</tr>
+<tr><td>24 bits</td>
+<td>?</td>
+<td>0x312</td>
+<td>0x315</td>
+<td>0x318</td>
+<td>0x31B</td>
+<td>0x31F</td>
+</tr>
+<tr><td>32 bits</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<p>Key:  8 bits = 256 colours,  15 bits = 32, 768 colours,
+16 bits = 65, 536 colours,   24  bits  = 16.8 million colours,
+32 bits - same as 24 bits,  but  the extra 8 bits can be used
+for  other  things,  and fits perfectly with a 32 bit PCI/VLB
+/EISA bus.</p>
+<p>Additional  modes are at the discretion of the manufacturer,
+as the VESA 2.0 document only defines modes up to 0x31F. You
+may  need  to  do  some  fiddling around to find these extra
+modes.</p>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id5" id="hotkeys" name="hotkeys">Hotkeys</a></h1>
+<p><strong>Normal Mode</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CTRL-ALT_H</td>
+<td>pop up online help</td>
+</tr>
+<tr><td>CTRL-SPACE</td>
+<td>open/close input method</td>
+</tr>
+<tr><td>ALT_SPACE</td>
+<td>show/hide input bar(open/close CJK mode)</td>
+</tr>
+<tr><td>CTRL-comma</td>
+<td>toggle Full/Half char mode</td>
+</tr>
+<tr><td>CTRL-period</td>
+<td>toggle Chinese symbol</td>
+</tr>
+<tr><td>CTRL-F1</td>
+<td>set encode to GB2312</td>
+</tr>
+<tr><td>CTRL-F2</td>
+<td>set encode to GBK</td>
+</tr>
+<tr><td>CTRL-F3</td>
+<td>set encode to BIG5</td>
+</tr>
+<tr><td>CTRL-F4</td>
+<td>set encode to JIS</td>
+</tr>
+<tr><td>CTRL-F5</td>
+<td>set encode to KSC</td>
+</tr>
+<tr><td>CTRL-F7</td>
+<td>toggle input style</td>
+</tr>
+<tr><td>CTRL-F9</td>
+<td>toggle GB2312/BIG5 auto-detect mode</td>
+</tr>
+<tr><td>CTRL-F10</td>
+<td>menu mode</td>
+</tr>
+<tr><td>CTRL-ALT-1-9</td>
+<td>switch to input method 1 to 9</td>
+</tr>
+<tr><td>CTRL-ALT-0</td>
+<td>English mode</td>
+</tr>
+</tbody>
+</table>
+<p><strong>History Mode</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>SHIFT_PAGEUP</td>
+<td>scroll up half screen in history</td>
+</tr>
+<tr><td>SHIFT_PAGEDOWN</td>
+<td>scroll down half screen in history</td>
+</tr>
+<tr><td>SHIFT_ARROWUP</td>
+<td>scroll up one line in history</td>
+</tr>
+<tr><td>SHIFT_ARROWDOWN</td>
+<td>scroll down one in history</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id6" id="thanks" name="thanks">Thanks</a></h1>
+<p>When I wrote the original version of zhcon the following sources help me
+a lot.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Source</th>
+<th class="head">Help</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>chdrv, jmce</td>
+<td>they show me how a Chinese console works.</td>
+</tr>
+<tr><td>unicon</td>
+<td>language encoding and font support,  great!</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">/usr/src/linux/video/fbcon-*.c</span></tt></td>
+<td>low level framebuffer routine.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">/usr/src/linux/drivers/char/console.c</span></tt></td>
+<td>VT102 implementation.</td>
+</tr>
+<tr><td>MINIX source code</td>
+<td>VT102 implementation.</td>
+</tr>
+<tr><td>autoconvert</td>
+<td>GB2312/BIG5 auto-detect&amp;convert</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
