@@ -1,12 +1,15 @@
 What's new in zhcon version 0.2.5?
 ----------------------------------
-zhcon 0.2.5 features basic utf-8 support.
+zhcon 0.2.5 is a major release since 0.2.3, adding basic utf-8 support under linux.
     * Added: --utf8 option to enable utf-8 encoding filter to convert utf8
       code to/from system encoding (gb2312 etc.) on the fly
     * Added: --exec to launch a user program after start up
     * Added: --drv to select which video driver to use
     * Fixed: improved building script
     * Removed: no tips will be shown
+
+please node bsd support is broken at this time
+check README.utf8 for details on the new utf8 feature
 
 What's new in zhcon version 0.2.4?
 ----------------------------------

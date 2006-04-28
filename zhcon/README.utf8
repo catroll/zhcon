@@ -1,0 +1,9 @@
+zhcon supports utf-8 locale starting from version 0.2.5.
+
+To use utf-8 locale,  simply add --utf8 to the command line:
+    zhcon --utf8
+
+Limitation of zhcon's utf8 support:
+    * only one system encoding (gbk/big5 etc) can be used at any given time
+    * any character invalid in current system encoding will not be displayed
+    * some terminal applications, such as mc and links, may not function properly under utf8
