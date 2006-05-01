@@ -170,7 +170,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-EXTRA_DIST = zhcon.1.in poem.big5 poem.gb poem.gb.utf8 bpsf.txt manual.tex manual.dvi manual.ps html.tar.gz
+EXTRA_DIST = zhcon.1.in poem.big5 poem.gb poem.gb.utf8 bpsf.txt manual.tex manual.dvi manual.ps doc.leo README.html default.css html.tar.gz
 all: all-am
 
 .SUFFIXES:

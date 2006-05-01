@@ -1,3 +1,7 @@
+2006-05-01 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: can not call out input window under utf8 mode on Linux console
+    * Fixed: install script in po/Makefile.in.in
+
 2006-04-21 ejoy <ejoy@users.sourceforge.net>
     * remove -e option, use command line arguments instead
     * resolve warning message under gcc 3.4.4
