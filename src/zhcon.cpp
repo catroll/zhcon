@@ -538,8 +538,6 @@ void Zhcon::SetEncode(Encode e, Encode font) {
 
 void Zhcon::VtSignalSet(int mode)
 {
-    printf("warning no vt signal set\n");
-    return; // for debug
     vt_mode vtm;
     if (ioctl(mConFd, VT_GETMODE, &vtm))
         throw runtime_error("ioctl VT_GETMODE failed!");

@@ -135,7 +135,11 @@ void InputManager::Process(InputEvt &evt) {
         mOutputRead += read(mConFd, mOutputBuf+mOutputRead, BUFSIZE-mOutputRead);
         if (mOutputRead > 0) {
 #ifdef HAVE_ICONV
-            if (UseEncodingFilter) {
+            /* XXX: under utf8 mode the system hotkey (single char) will be converted into
+             * some crazy 3-byte sequence. To avoid this problem, an ad hoc workaround is to only
+             * perform encoding conversion on buffer with more than 1 byte.
+             */
+            if (mOutputRead > 1 && UseEncodingFilter) {
                 mOutputRead = DoEncodingFilter(CONVERT_TO_UTF8_FILTER, mOutputBuf, mOutputRead);
                 if (EncodingFilterLen > 0) {
                     for (size_t i = 0; i < EncodingFilterLen; i++)

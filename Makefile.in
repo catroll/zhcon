@@ -194,7 +194,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = foreign
-EXTRA_DIST = README.BSD README.gpm bootstrap
+EXTRA_DIST = README.utf8 README.BSD README.gpm bootstrap
 SUBDIRS = src doc input font po intl debian tools
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
