@@ -185,8 +185,6 @@ if test "$useggi" = 'yes';then
 fi
 
 AC_OUTPUT([Makefile
-        intl/Makefile
-        po/Makefile.in
         doc/Makefile
         doc/zhcon.1
         debian/Makefile

@@ -7,3 +7,11 @@ Limitation of zhcon's utf8 support:
     * only one system encoding (gbk/big5 etc) can be used at any given time
     * any character invalid in current system encoding will not be displayed
     * some terminal applications, such as mc and links, may not function properly under utf8
+
+
+Using vim under utf8 locale:
+vim 6 has native support for utf8 locale. If vim can not correctly display/edit Chinese text file encoded in utf8 under zhcon
+, put the following line in your .vimrc file:
+    set encoding=utf8
+
+

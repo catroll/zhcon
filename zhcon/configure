@@ -13048,7 +13048,7 @@ _ACEOF
 
 fi
 
-                                                                                                              ac_config_files="$ac_config_files Makefile intl/Makefile po/Makefile.in doc/Makefile doc/zhcon.1 debian/Makefile tools/Makefile font/Makefile input/Makefile src/Makefile src/display/Makefile"
+                                                                                          ac_config_files="$ac_config_files Makefile doc/Makefile doc/zhcon.1 debian/Makefile tools/Makefile font/Makefile input/Makefile src/Makefile src/display/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -13620,8 +13620,6 @@ do
   case "$ac_config_target" in
   # Handling of arguments.
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-  "intl/Makefile" ) CONFIG_FILES="$CONFIG_FILES intl/Makefile" ;;
-  "po/Makefile.in" ) CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "doc/zhcon.1" ) CONFIG_FILES="$CONFIG_FILES doc/zhcon.1" ;;
   "debian/Makefile" ) CONFIG_FILES="$CONFIG_FILES debian/Makefile" ;;

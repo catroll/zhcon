@@ -11,11 +11,11 @@ install-exec-local:
 	chmod 4755 $(bindir)/zhcon
 
 install-data-local:
-	$(mkinstalldirs) $(DESTDIR)/etc
-	$(INSTALL_DATA) $(srcdir)/zhcon.conf $(DESTDIR)/etc/zhcon.conf
+	$(mkinstalldirs) $(prefix)/etc
+	$(INSTALL_DATA) $(srcdir)/zhcon.conf $(prefix)/etc/zhcon.conf
 
 uninstall-local:
-	-rm -f $(DESTDIR)/etc/zhcon.conf
+	-rm -f $(prefix)/etc/zhcon.conf
 
 # set the include path found by configure
 INCLUDES= $(all_includes)

@@ -327,7 +327,7 @@ uninstall-am: uninstall-info-am uninstall-local
 
 install-data-local:
 	$(mkinstalldirs) $(mandir)/man1/
-	$(INSTALL_DATA) $(srcdir)/zhcon.1 $(mandir)/man1/zhcon.1
+	$(INSTALL_DATA) $(top_builddir)/doc/zhcon.1 $(mandir)/man1/zhcon.1
 
 uninstall-local:
 	-rm -f $(mandir)/man1/zhcon.1
