@@ -60,9 +60,9 @@ am_zhcon_OBJECTS = basefont.$(OBJEXT) big52gbdecoder.$(OBJEXT) \
 	overspotclient.$(OBJEXT) nativeinputserver.$(OBJEXT) \
 	inputclient.$(OBJEXT) inputmanager.$(OBJEXT) \
 	inputserver.$(OBJEXT) candilist.$(OBJEXT) \
-	uniconinputserver.$(OBJEXT) configserver.$(OBJEXT) \
-	nativebarclient.$(OBJEXT) mouse.$(OBJEXT) encfilter.$(OBJEXT) \
-	iconv_string.$(OBJEXT) cmdline.$(OBJEXT)
+	uniconinputserver.$(OBJEXT) nativebarclient.$(OBJEXT) \
+	mouse.$(OBJEXT) encfilter.$(OBJEXT) iconv_string.$(OBJEXT) \
+	cmdline.$(OBJEXT)
 zhcon_OBJECTS = $(am_zhcon_OBJECTS)
 zhcon_DEPENDENCIES = display/libdisplay.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
@@ -209,8 +209,8 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-zhcon_SOURCES = basefont.cpp big52gbdecoder.cpp big5decoder.cpp configfile.cpp console.cpp gb2big5decoder.cpp gbdecoder.cpp gbkdecoder.cpp graphdev.cpp hzdecoder.cpp jisdecoder.cpp kscdecoder.cpp main.cpp window.cpp winime.cpp zhcon.cpp overspotclient.cpp nativeinputserver.cpp inputclient.cpp inputmanager.cpp inputserver.cpp candilist.cpp uniconinputserver.cpp configserver.cpp nativebarclient.cpp mouse.cpp encfilter.c iconv_string.c cmdline.c
-EXTRA_DIST = basefont.h big52gbdecoder.h big5decoder.h configfile.h console.h debug.h fade.h gb2big5decoder.h gbdecoder.h gbkdecoder.h global.h graphdev.h hzdecoder.h jisdecoder.h keymap.h kscdecoder.h utypes.h window.h winime.h zhcon.h zhcon.conf ImmClient.h ImmComm.h ImmDefs.h ImmModule.h Phrase.h inputclient.h inputmanager.h inputserver.h nativeinputserver.h overspotclient.h candilist.h uniconinputserver.h configserver.h nativebarclient.h logo.ansi logo.h mouse.h encfilter.h iconv_string.h cmdline.h opt.sh
+zhcon_SOURCES = basefont.cpp big52gbdecoder.cpp big5decoder.cpp configfile.cpp console.cpp gb2big5decoder.cpp gbdecoder.cpp gbkdecoder.cpp graphdev.cpp hzdecoder.cpp jisdecoder.cpp kscdecoder.cpp main.cpp window.cpp winime.cpp zhcon.cpp overspotclient.cpp nativeinputserver.cpp inputclient.cpp inputmanager.cpp inputserver.cpp candilist.cpp uniconinputserver.cpp nativebarclient.cpp mouse.cpp encfilter.c iconv_string.c cmdline.c
+EXTRA_DIST = basefont.h big52gbdecoder.h big5decoder.h configfile.h console.h debug.h fade.h gb2big5decoder.h gbdecoder.h gbkdecoder.h global.h graphdev.h hzdecoder.h jisdecoder.h keymap.h kscdecoder.h utypes.h window.h winime.h zhcon.h zhcon.conf ImmClient.h ImmComm.h ImmDefs.h ImmModule.h Phrase.h inputclient.h inputmanager.h inputserver.h nativeinputserver.h overspotclient.h candilist.h uniconinputserver.h nativebarclient.h logo.ansi logo.h mouse.h encfilter.h iconv_string.h cmdline.h opt.sh
 zhcon_LDADD = display/libdisplay.a
 SUBDIRS = display
 
@@ -288,7 +288,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/candilist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configfile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configserver.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/console.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/encfilter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gb2big5decoder.Po@am__quote@

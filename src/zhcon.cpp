@@ -158,7 +158,7 @@ void Zhcon::Run() {
     while (mState == RUNNING) {
         mpCon->CursorBlink();
         mpInputManager->Process(evt);
-        gpScreen->Update(); //  force ggi update, should be removed later
+        gpScreen->Update(); //   force ggi to update screen
         if (evt.oper != InputEvt::Nothing) {
             DoInputEvt(evt);
             continue;
@@ -538,6 +538,9 @@ void Zhcon::SetEncode(Encode e, Encode font) {
 
 void Zhcon::VtSignalSet(int mode)
 {
+    if (GraphDev::mpGraphDev->Name() == "ggi") // no signal handling under ggi-X
+        return;
+
     vt_mode vtm;
     if (ioctl(mConFd, VT_GETMODE, &vtm))
         throw runtime_error("ioctl VT_GETMODE failed!");

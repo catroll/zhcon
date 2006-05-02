@@ -83,6 +83,7 @@ class GraphDev {
         virtual void SwitchToGraph() {};
         virtual void SwitchToText() {};
         virtual void Update() {};
+        virtual string Name() = 0;
 
     protected:
         static int mXres, mYres;

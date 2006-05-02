@@ -37,7 +37,6 @@ using namespace std;
 #ifdef HAVE_UNICON_LIB
     #include "uniconinputserver.h"
 #endif
-#include "configserver.h"
 #include "nativebarclient.h"
 #include "overspotclient.h"
 #include "inputmanager.h"
@@ -281,9 +280,6 @@ bool InputManager::ProcessSysKey(char c, InputEvt &evt) {
             evt.oper = InputEvt::AutoEncoSwitch;
             evt.sub = 0;
             break;
-        case CTRL_F10:
-            MenuMode();
-            break;
         case SHIFT_PAGEUP:
             mpCon->ScrollDelta(Console::PAGE_UP);
             break;
@@ -443,6 +439,7 @@ bool InputManager::LoadImm(ImmInfo& rInfo) {
             mpCurImm = NULL; //force reload
             bool r = LoadImm(*pOld);
             assert(r);
+            r = true; /* remove warning of unused r */
         }
         return false;
     }
@@ -523,6 +520,7 @@ void InputManager::DoCtrlSpace() {
     }
 }
 
+#if 0
 void InputManager::MenuMode() {
     if (mpInputServer)
         delete mpInputServer;
@@ -532,6 +530,7 @@ void InputManager::MenuMode() {
     mpInputClient->Show();
     mpInputClient->Update();
 }
+#endif
 
 void InputManager::Show() {
     if (mActive && mClientVisible) {
@@ -834,7 +833,7 @@ void InputManager::HelpShow() {
     mpHelpWin->PutStr(45, 6,  _("F4  JIS"));
     mpHelpWin->PutStr(1, 7,   _("F5  KSC"));
     mpHelpWin->PutStr(15, 7,  _("F9  Switch & Auto Detect"));
-    mpHelpWin->PutStr(45, 7,  _("F10 Sys Menu"));
+    // mpHelpWin->PutStr(45, 7,  _("F10 Sys Menu"));
     mpHelpWin->PutStr(1, 8,   _("F7  Input Style"));
     mpHelpWin->PutStr(45, 8,  _("D   Exit zhcon"));
 

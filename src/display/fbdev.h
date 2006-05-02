@@ -37,6 +37,7 @@ class FBDev : public GraphDev  {
 
         void SwitchToGraph();
         void SwitchToText();
+        string Name() { return "fb"; }
 
     private:
         static OPEN_RC LinearSet( struct fb_var_screeninfo &Vinfo );

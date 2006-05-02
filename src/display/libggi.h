@@ -37,6 +37,8 @@ class LIBGGI : public GraphDev  {
         void SwitchToGraph();
         void SwitchToText();
         void Update();
+        string Name() { return "ggi"; }
+
     private:
         int GetPixMap(char* expanded,int fg,int bg,struct CharBitMap* pFont);
 
