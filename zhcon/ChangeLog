@@ -1,5 +1,6 @@
 2006-05-02 ejoy <ejoy@users.sourceforge.net>
     * Removed: po and intl directory
+    * Removed: configserver.cpp
     * use $prefix/etc/zhcon.conf instead of /etc/zhcon.conf
 
 2006-05-01 ejoy <ejoy@users.sourceforge.net>

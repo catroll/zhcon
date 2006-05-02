@@ -41,6 +41,7 @@ class VGADev : public GraphDev {
 
         void SwitchToGraph();
         void SwitchToText();
+        string Name() { return "vga"; }
 
     private:
         static void EnableIOPerm();
