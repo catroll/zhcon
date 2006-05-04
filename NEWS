@@ -6,9 +6,9 @@ zhcon 0.2.5 is a major release since 0.2.3, adding basic utf-8 support under lin
     * Added: --exec to launch a user program after start up
     * Added: --drv to select which video driver to use
     * Fixed: improved building script
-    * Removed: no tips will be shown
+    * Removed: tips, config menu and localized text support
 
-please node bsd support is broken at this time
+please node bsd support is *broken* at this time
 check README.utf8 for details on the new utf8 feature
 
 What's new in zhcon version 0.2.4?
