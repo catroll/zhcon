@@ -1,3 +1,5 @@
+NOTE: BSD PORT IS BROKEN IN THIS VERSION!!!
+
 0. 请注意 zhcon 目前只能在第一个控制台运行!
    可以配合screen使用多个控制台:
    zhcon screen

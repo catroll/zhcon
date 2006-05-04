@@ -10,8 +10,8 @@ Limitation of zhcon's utf8 support:
 
 
 Using vim under utf8 locale:
-vim 6 has native support for utf8 locale. If vim can not correctly display/edit Chinese text file encoded in utf8 under zhcon
-, put the following line in your .vimrc file:
+vim 6 has native support for utf8 locale. If vim can not correctly display/edit utf8 Chinese text file, put the
+following line in your .vimrc file:
     set encoding=utf8
 
 
