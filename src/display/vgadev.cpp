@@ -48,20 +48,20 @@ int VGADev::mFd = -1;
 
 bool VGADev::TryOpen() {
     if (!LRMI_init()) {
-        throw (runtime_error("LRMI_init() failed.\n"));
+        fprintf(stderr, "\n(VGADev::TryOpen) LRMI_init() failed.\n");
         return false;
     }
 
     EnableIOPerm();
     if (!SetVideoMode(0x12)) {
         DisableIOPerm();
-        throw (runtime_error("LRMI_int() failed, can't change video mode.\n"));
+        fprintf(stderr, "\n(VGADev::TryOpen) LRMI_init() failed, can not set video mode 0x12\n");
         return false;
     }
 
     if ((mFd = open("/dev/mem", O_RDWR)) < 0) {
         DisableIOPerm();
-        throw(runtime_error("Cannot open /dev/mem.\n"));
+        fprintf(stderr, "\n(VGADev::TryOpen) can not open /dev/mem in read/write mode\n");
         return false;
     }
 
@@ -72,7 +72,8 @@ bool VGADev::TryOpen() {
                                 mFd, GRAPH_BASE));
     if (mpBuf == MAP_FAILED) {
         DisableIOPerm();
-        throw(runtime_error("mmap() failed!"));
+        fprintf(stderr, "\n(VGADev::TryOpen) mmap() call failed\n");
+        return false;
     }
 
     mpGraphDev = new VGADev;
