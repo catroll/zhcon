@@ -112,6 +112,7 @@ mpInputManager(NULL)
             UseEncodingFilter = 1;
 }
 
+// will be called on exception
 Zhcon::~Zhcon() {
     CleanUp();
     Zhcon::mpZhcon = NULL;
@@ -303,7 +304,8 @@ void Zhcon::InstallSignal() {
     //    sigaction(SIGALRM, &act, NULL);
 }
 
-//do some clean up before quit
+// as CleanUp() is also called on exception, care should be made so that
+// only full inititlized part are cleaned
 void Zhcon::CleanUp() {
     struct sigaction act;
     /* done in procress and block all serious signal to prevent interrupt */
@@ -538,12 +540,14 @@ void Zhcon::SetEncode(Encode e, Encode font) {
 
 void Zhcon::VtSignalSet(int mode)
 {
-    if (GraphDev::mpGraphDev->Name() == "ggi") // no signal handling under ggi-X
+    // Signal handing only apply to console mode (fb or vga), after GraphDev being correctly initialized, 
+    // not applied to ggi
+    if (GraphDev::mpGraphDev == NULL || GraphDev::mpGraphDev->Name() == "ggi")
         return;
 
     vt_mode vtm;
     if (ioctl(mConFd, VT_GETMODE, &vtm))
-        throw runtime_error("ioctl VT_GETMODE failed!");
+        throw runtime_error("in Zhcon::VtSignalSet() ioctl VT_GETMODE failed!");
 
     switch (mode) {
         case 1:  // leave
@@ -560,6 +564,7 @@ void Zhcon::VtSignalSet(int mode)
             vtm.acqsig = SIGUSR1;
             vtm.frsig = SIGUSR1;
             break;
+        case 0:
         default:  // clean
             signal(SIGUSR1, SIG_DFL);
             vtm.mode = VT_AUTO;
@@ -567,7 +572,7 @@ void Zhcon::VtSignalSet(int mode)
     }
     
     if (ioctl(mConFd, VT_SETMODE, &vtm))
-        throw runtime_error("ioctl VT_SETMODE failed!");
+        throw runtime_error("in Zhcon::VtSignalSet() ioctl VT_SETMODE failed!");
 }
 
 void Zhcon::VtDoLeave() {
@@ -693,9 +698,20 @@ void Zhcon::InitGraphDev(ConfigFile& f){
     r = GraphDev::Open(xres, yres, depth);
 #endif
     if (!r)
-        throw(runtime_error("Can not open graph device,make sure "
-            "you have a kernel compiled with framebuffer support or "
-            "you have a vga card."));
+        throw(runtime_error(
+            "\n============== I'm really sorry, but... ================\n"
+            "I can not open graphical device on this machine, this can happen when:\n"
+            "1. your kernel does not have framebuffer device enabled, check the output from `dmesg|grep vesa`\n"
+            "2. you are running on a non-i386 machine so no VGA support\n"
+            "3. you are running under X-Window but libggi is not compiled in (required for running zhcon under X-Window)\n"
+            "\n"
+            "Don't be panic by this message, thousands of people have run zhcon successfully, surely you can!\n"
+            "I suggest you visit http://zhcon.sourceforge.net for more information, or send an email to zhcon-users@lists.sourceforge.net\n"
+            "I'm pretty sure your problem will be solved very quickly\n"
+            "You can subscribe to the list on https:// lists.sourceforge.net/lists/listinfo/zhcon-users\n"
+            "\n"
+            "Good Luck!\n"
+            ));
     gpScreen = GraphDev::mpGraphDev;
     GraphDev::mBlankLineHeight = f.GetOption(string("blanklineheight"), 0);
     if (GraphDev::mBlankLineHeight < 0)

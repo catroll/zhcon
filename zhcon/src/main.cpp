@@ -51,7 +51,10 @@ int main(int argc, char* argv[]) {
         con.Run();
     } catch (runtime_error & e) {
         cerr << e.what() << endl;
+    } catch (...) {
+        cerr << "unknown exception caught" << endl;
     }
+
     return EXIT_SUCCESS;
 }
 
