@@ -7,6 +7,7 @@ zhcon 0.2.5 is a major release since 0.2.3, adding basic utf-8 support under lin
     * Added: --drv to select which video driver to use
     * Fixed: improved building script
     * Removed: tips, config menu and localized text support
+    * change /etc/zhcon.conf to $prefix/etc/zhcon.conf
 
 please node bsd support is *broken* at this time
 check README.utf8 for details on the new utf8 feature
