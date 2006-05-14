@@ -1,3 +1,6 @@
+2006-05-14 ejoy <ejoy@users.sourceforge.net>
+    * Fixed: segfault caused by wrong config file in $prefix/etc/zhcon.conf
+
 2006-05-13 ejoy <ejoy@users.sourceforge.net>
     * Fixed: Seg fault when no graph device is availiable
     * Added: more user friend message when zhcon can not open graphical device

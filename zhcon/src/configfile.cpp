@@ -21,6 +21,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <sys/types.h>
+#include <cstdio>
 #include "configfile.h"
 
 ConfigFile::ConfigFile(const char *fn) {
@@ -32,8 +33,10 @@ ConfigFile::ConfigFile(const char *fn) {
     setreuid(euid, ruid);
     
     ifstream in(fn);
-    if (!in)
+    if (!in) {
+        fprintf(stderr, "(configfile.cpp) can not open config file %s\n", fn);
         throw runtime_error("Could not open config file!");
+    }
     ParseFile(in);
     setreuid(ruid, euid);
 }

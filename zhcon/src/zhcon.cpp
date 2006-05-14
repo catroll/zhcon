@@ -123,7 +123,7 @@ void Zhcon::Init() {
     string cfgfile = getenv("HOME");
     cfgfile += "/.zhconrc";
     if (access(cfgfile.c_str(), R_OK) != 0)
-        cfgfile = "/etc/zhcon.conf";
+        cfgfile = PREFIX "/etc/zhcon.conf";
 
     //for debug,a pause enable us to attach zhcon's pid in gdb
     //char c;cin>>c;
