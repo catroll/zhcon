@@ -2,7 +2,7 @@
 # vim600:fdm=marker
 
 AC_INIT(src/zhcon.cpp)
-AM_INIT_AUTOMAKE(zhcon, 0.2.5)
+AM_INIT_AUTOMAKE(zhcon, 0.2.6)
 AM_MAINTAINER_MODE
 AM_CONFIG_HEADER(config.h)
 
