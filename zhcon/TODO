@@ -12,9 +12,12 @@ zhcon is not bug free. Here's some minor bug found so far:
 * screen may get blank when quiting from VGA16 mode 
 
 Todo (sorted by priority):
+high:
+* only set LC_CTYPE on start instead of LC_ALL
 * input interface clean up
-* port to X-Window (yet another CJK term), using SDL
 * complete bsd port
+* port to X-Window (yet another CJK term), using SDL
+low:
 * rewrite zhcon using ucs2 as internal encoding (pending)
 * use FreeType to render TTF font, so we can display fonts in different points
 * restore previous video mode when quit
