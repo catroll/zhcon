@@ -78,11 +78,6 @@
 BaseFont* gpHzFont;
 BaseFont* gpAscFont;
 
-#ifndef NDEBUG
-#include "debug.h"
-ofstream debug("debug");
-#endif
-
 Zhcon* Zhcon::mpZhcon = NULL;
 int Zhcon::mTtyPid = 0;
 Zhcon::STATE Zhcon::mState = STOP;
