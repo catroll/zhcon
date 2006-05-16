@@ -699,18 +699,20 @@ void Zhcon::InitGraphDev(ConfigFile& f){
 #endif
     if (!r)
         throw(runtime_error(
-            "\n============== I'm really sorry, but... ================\n"
-            "I can not open graphical device on this machine, this can happen when:\n"
-            "1. your kernel does not have framebuffer device enabled, check the output from `dmesg|grep vesa`\n"
-            "2. you are running on a non-i386 machine so no VGA support\n"
-            "3. you are running under X-Window but libggi is not compiled in (required for running zhcon under X-Window)\n"
-            "\n"
-            "Don't be panic by this message, thousands of people have run zhcon successfully, surely you can!\n"
-            "I suggest you visit http://zhcon.sourceforge.net for more information, or send an email to zhcon-users@lists.sourceforge.net\n"
-            "I'm pretty sure your problem will be solved very quickly\n"
-            "You can subscribe to the list on https:// lists.sourceforge.net/lists/listinfo/zhcon-users\n"
-            "\n"
-            "Good Luck!\n"
+"\n============== I'm really sorry, but... ================\n"
+"I can not open graphical device on this machine, this can happen when:\n"
+"1. your kernel does not have fbdev enabled, check `dmesg|grep vesa`\n"
+"2. you are running on a non-i386 machine so no VGA support\n"
+"3. you are running under X-Window but libggi is not compiled in\n"
+"\n"
+"Don't be panic, thousands of people have run zhcon successfully, surely you can!\n"
+"I suggest you visit http://zhcon.sourceforge.net for more information, \n"
+"or send an email to zhcon-users@lists.sourceforge.net\n"
+"I'm sure your problem will be solved very quickly\n"
+"You can subscribe to the list on \n"
+"https:// lists.sourceforge.net/lists/listinfo/zhcon-users\n"
+"\n" 
+"Good Luck!\n"
             ));
     gpScreen = GraphDev::mpGraphDev;
     GraphDev::mBlankLineHeight = f.GetOption(string("blanklineheight"), 0);
@@ -747,8 +749,19 @@ void Zhcon::InitCon(ConfigFile& f){
 void Zhcon::InitInputManager(ConfigFile& f){
     assert(mConFd >= 0); // set by InitTty()
     char *TtyName = ttyname(mConFd);
-    int ttyno = atoi(&TtyName[8]);  // must be /dev/tty? style
+    int ttyno;
+
+    if (strncmp(TtyName, "/dev/tty", 8) == 0) // /dev/tty??
+        ttyno = atoi(&TtyName[8]);
+    else if (strncmp(TtyName,  "/dev/pts/", 9) == 0) // /dev/pts/??
+        ttyno = atoi(&TtyName[9]);
+    else {
+        fprintf(stderr, "(Zhcon::InitInputManager) unknown tty name [%s]\n", TtyName);
+        throw runtime_error("unknown tty name, must be /dev/ttyXX or /dev/ptsXX");
+    }
+
     assert(mTtyFd >= 0); // set by ForkPty()
+
     InputManager::SetTty(mConFd, ttyno, mTtyFd);
     
     string s;
@@ -769,7 +782,6 @@ void Zhcon::InitInputManager(ConfigFile& f){
 
     mpInputManager->LoadImmInfo(f);
     mpInputManager->Show();
-    if (f.GetOption("promptmode",true))
         mpInputManager->PromptMode();
 }
 

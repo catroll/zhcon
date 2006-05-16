@@ -60,8 +60,8 @@ bool Mouse::Open(Console* pCon, int confd, int ttyno, int ttyfd) {
     mConn.minMod      = 0;          // run always
     mConn.maxMod      = ~0;         // with any modifier
     if (Gpm_Open(&mConn, ttyno)==-1) {
-      //printf("Can't open mouse connection at %d\r\n", mMouseConn.vc);
-      //printf("pid=%d, vc=%d\r\n",mMouseConn.pid, mMouseConn.vc);
+      // fprintf(stderr, "Gpm_Open:Can't open mouse connection at tty:%d\r\n", ttyno);
+      // fprintf(stderr, "pid=%d, vc=%d\r\n",mConn.pid, ttyno);
       return false;
     }
 
@@ -72,8 +72,8 @@ bool Mouse::Open(Console* pCon, int confd, int ttyno, int ttyfd) {
     Gpm_Event event;
     int i=Gpm_GetSnapshot(&event);
     if (-1 == i) {
-       printf("Warning: cannot get snapshot!\n");
-       printf("Maybe in xterm or before connecting?\n");
+       fprintf(stderr, "Warning: cannot get snapshot!\n");
+       fprintf(stderr, "Maybe in xterm or before connecting?\n");
        return true;
     }
     mButtons = i;
