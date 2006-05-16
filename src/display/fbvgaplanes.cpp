@@ -23,6 +23,7 @@
 #include <assert.h>
 #include <unistd.h>
 #include "debug.h"
+#include <stdio.h>
 #include "fbvgaplanes.h"
 
 #if defined(linux)
@@ -183,8 +184,8 @@ void FBVgaPlanes::FillRect(int x1,int y1,int x2,int y2,int color) {
     }
 #ifndef NDEBUG
     if (left + right > width || midbytes < 0) {
-        debug<<"FillRect x1="<<x1<<" width="<<width<<" left="<<left;
-        debug<<" midbytes="<<midbytes<<" right="<<right<<endl;
+        fprintf(stderr, "FillRect x1=%d width=%d left=%d\n", x1, width, left);
+        fprintf(stderr, " midbytes=%d, right=%d\n", midbytes, right);
     }
 #endif
     
