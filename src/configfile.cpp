@@ -25,12 +25,14 @@
 #include "configfile.h"
 
 ConfigFile::ConfigFile(const char *fn) {
+#if 0
     uid_t ruid, euid;
 
     ruid = getuid();
     euid = geteuid();
 
     setreuid(euid, ruid);
+#endif
     
     ifstream in(fn);
     if (!in) {
@@ -38,7 +40,9 @@ ConfigFile::ConfigFile(const char *fn) {
         throw runtime_error("Could not open config file!");
     }
     ParseFile(in);
+#if 0
     setreuid(ruid, euid);
+#endif
 }
 
 ConfigFile::~ConfigFile() {}
