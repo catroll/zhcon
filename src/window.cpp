@@ -21,7 +21,6 @@
 #include <sys/time.h>
 #include <algorithm>
 #include "global.h"
-#include "debug.h"
 #include "window.h"
 
 //static members for all the windows

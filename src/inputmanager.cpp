@@ -26,7 +26,6 @@ using namespace std;
 #include <string>
 
 #include "global.h"
-#include "debug.h"
 #include "keymap.h"
 #include "console.h"
 #include "zhcon.h"

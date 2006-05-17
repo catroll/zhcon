@@ -17,7 +17,6 @@
  ***************************************************************************/
 
 #include "global.h"
-#include "debug.h"
 #include "console.h"
 #include "candilist.h"
 #include "inputserver.h"

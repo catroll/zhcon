@@ -33,7 +33,6 @@
 #include <sys/mman.h>
 #include <sys/io.h>
 #include <cassert>
-#include "debug.h"
 #include "vgadev.h"
 #include "lrmi.h"
 
