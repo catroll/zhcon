@@ -22,7 +22,6 @@
 #ifdef USING_VGA
 #include <assert.h>
 #include <unistd.h>
-#include "debug.h"
 #include <stdio.h>
 #include "fbvgaplanes.h"
 

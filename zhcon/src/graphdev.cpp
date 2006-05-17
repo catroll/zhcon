@@ -26,7 +26,6 @@
 #include <sys/mman.h>
 #include <assert.h>
 #include <iostream>
-#include "debug.h"
 
 #include "display/fbdev.h"
 #include "display/vgadev.h"

@@ -17,7 +17,6 @@
  ***************************************************************************/
 
 #include <cassert>
-#include "debug.h"
 #include <unistd.h>
 #include <string.h>
 #include <algorithm>
@@ -752,7 +751,7 @@ void Console::SetMode(bool f) {
     switch (mEscParam[0]) {
         /* DEC private modes set/reset */
         case 1:                        /* Cursor keys send ^[Ox/^[[x */
-            fprintf(stderr, "(Console::SetMode()) set_dec_cursor_keys(tty, on_off) not implemented");
+            assert(!"set_dec_cursor_keys(tty,  on_off) not implemented");
             break;
         case 3:                        /* 80/132 mode switch unimplemented */
             break;

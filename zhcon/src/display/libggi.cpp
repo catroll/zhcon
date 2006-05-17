@@ -25,7 +25,6 @@
 
 #include <stdio.h>
 #include <cassert>
-#include "debug.h"
 #include "libggi.h"
 
 ggi_visual_t LIBGGI::visual;

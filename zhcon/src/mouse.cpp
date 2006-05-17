@@ -17,7 +17,6 @@
  ***************************************************************************/
 
 #include <cassert>
-#include "debug.h"
 #include "mouse.h"
 #include <sys/signal.h>
 
