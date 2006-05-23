@@ -106,7 +106,14 @@ dnl ALL_LINGUAS="zh_CN.GB2312 zh_CN.GBK zh_CN.EUC zh_TW.Big5 ko ja"
 AM_GNU_GETTEXT
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h string.h sys/ioctl.h termios.h unistd.h])
+AC_CHECK_HEADERS([fcntl.h string.h sys/ioctl.h termios.h unistd.h term.h gpm.h])
+
+if test "$ac_cv_header_term_h" != 'yes'; then
+    echo ""
+    echo "*** term.h not found on this system, please install libncurses-dev or libcurses-dev and try again."
+    echo ""
+    exit 1
+fi
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -128,8 +135,23 @@ fi
 
 AC_CHECK_LIB(util, forkpty)
 AC_CHECK_LIB(curses, main)
+AC_CHECK_LIB(gpm, main)
 
-dnl check for iconv
+if test "$ac_cv_lib_util_forkpty" != 'yes'; then
+    echo ""
+    echo "*** forkpty() in libutil not found on this system, please install libutil and try again."
+    echo ""
+    exit 1
+fi
+
+if test "$ac_cv_lib_curses_main" != 'yes'; then
+    echo ""
+    echo "*** libcurses not found on this system, please install libcurses or libncurses and try again."
+    echo ""
+    exit 1
+fi
+
+dnl check for iconv using automake macro
 if test "$am_cv_func_iconv" != 'yes'; then
     echo ""
     echo "*** iconv() not found on this system, which is required for utf8 support"
@@ -138,13 +160,6 @@ if test "$am_cv_func_iconv" != 'yes'; then
     echo ""
     exit 1
 fi
-
-dnl-----------------------------------------------------------------------
-dnl Checks for gpm
-dnl-----------------------------------------------------------------------
-usegpm="yes"
-AC_CHECK_HEADERS(gpm.h,,usegpm="no")
-AC_CHECK_LIB(gpm,main,,usegpm="no")
 
 dnl-----------------------------------------------------------------------
 dnl Checks for unicon library from TurboLinux Chinese.
@@ -196,7 +211,7 @@ Configuration:
     C   Compiler:              ${CC}
     C   Compiler flags:        ${CFLAGS}
     VGA support:               ${usevga}
-    gpm moues support:         ${usegpm}
+    gpm moues support:         ${ac_cv_header_gpm_h}
     libggi support:            ${useggi}
     unicon support:            ${useunicon}
     zhcon binary dir:          `eval "echo \`eval \"echo ${bindir}\"\`"`

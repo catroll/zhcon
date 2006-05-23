@@ -11,8 +11,8 @@ install-exec-local:
 	chmod 4755 $(bindir)/zhcon
 
 install-data-local:
-	$(mkinstalldirs) $(prefix)/etc
-	$(INSTALL_DATA) $(srcdir)/zhcon.conf $(prefix)/etc/zhcon.conf
+	$(mkinstalldirs) $(DESTDIR)/etc
+	$(INSTALL_DATA) $(srcdir)/zhcon.conf $(DESTDIR)/etc/zhcon.conf
 
 uninstall-local:
 	-rm -f $(prefix)/etc/zhcon.conf
