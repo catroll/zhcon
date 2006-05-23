@@ -1,0 +1,7 @@
+# Name of your program
+package "zhcon"       # don't use package if you're using automake
+purpose "A Fast CJK Console Environment (http://zhcon.sf.net)"
+
+# Options
+option  "utf8" - "use iconv filter to convert UTF-8 stream from/to system encoding" flag off
+option  "drv" - "specify video driver (auto, fb, ggi, vga)" string default="auto" no

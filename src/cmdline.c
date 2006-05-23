@@ -61,7 +61,7 @@ void
 cmdline_parser_print_help (void)
 {
   cmdline_parser_print_version ();
-  printf("\n%s\n", "A Fast CJK Console Environment");
+  printf("\n%s\n", "A Fast CJK Console Environment (http://zhcon.sf.net)");
   printf("\nUsage: zhcon [OPTIONS]... [FILES]...\n\n");
   printf("%s\n","  -h, --help        Print help and exit");
   printf("%s\n","  -V, --version     Print version and exit");
