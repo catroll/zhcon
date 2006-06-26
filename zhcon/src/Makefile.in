@@ -51,18 +51,21 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_zhcon_OBJECTS = basefont.$(OBJEXT) big52gbdecoder.$(OBJEXT) \
-	big5decoder.$(OBJEXT) configfile.$(OBJEXT) console.$(OBJEXT) \
-	gb2big5decoder.$(OBJEXT) gbdecoder.$(OBJEXT) \
-	gbkdecoder.$(OBJEXT) graphdev.$(OBJEXT) hzdecoder.$(OBJEXT) \
-	jisdecoder.$(OBJEXT) kscdecoder.$(OBJEXT) main.$(OBJEXT) \
-	window.$(OBJEXT) winime.$(OBJEXT) zhcon.$(OBJEXT) \
-	overspotclient.$(OBJEXT) nativeinputserver.$(OBJEXT) \
-	inputclient.$(OBJEXT) inputmanager.$(OBJEXT) \
-	inputserver.$(OBJEXT) candilist.$(OBJEXT) \
-	uniconinputserver.$(OBJEXT) nativebarclient.$(OBJEXT) \
-	mouse.$(OBJEXT) encfilter.$(OBJEXT) iconv_string.$(OBJEXT) \
-	cmdline.$(OBJEXT)
+am_zhcon_OBJECTS = zhcon-basefont.$(OBJEXT) \
+	zhcon-big52gbdecoder.$(OBJEXT) zhcon-big5decoder.$(OBJEXT) \
+	zhcon-configfile.$(OBJEXT) zhcon-console.$(OBJEXT) \
+	zhcon-gb2big5decoder.$(OBJEXT) zhcon-gbdecoder.$(OBJEXT) \
+	zhcon-gbkdecoder.$(OBJEXT) zhcon-graphdev.$(OBJEXT) \
+	zhcon-hzdecoder.$(OBJEXT) zhcon-jisdecoder.$(OBJEXT) \
+	zhcon-kscdecoder.$(OBJEXT) zhcon-main.$(OBJEXT) \
+	zhcon-window.$(OBJEXT) zhcon-winime.$(OBJEXT) \
+	zhcon-zhcon.$(OBJEXT) zhcon-overspotclient.$(OBJEXT) \
+	zhcon-nativeinputserver.$(OBJEXT) zhcon-inputclient.$(OBJEXT) \
+	zhcon-inputmanager.$(OBJEXT) zhcon-inputserver.$(OBJEXT) \
+	zhcon-candilist.$(OBJEXT) zhcon-uniconinputserver.$(OBJEXT) \
+	zhcon-nativebarclient.$(OBJEXT) zhcon-mouse.$(OBJEXT) \
+	zhcon-encfilter.$(OBJEXT) zhcon-iconv_string.$(OBJEXT) \
+	zhcon-cmdline.$(OBJEXT)
 zhcon_OBJECTS = $(am_zhcon_OBJECTS)
 zhcon_DEPENDENCIES = display/libdisplay.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
@@ -211,6 +214,7 @@ target_alias = @target_alias@
 zhcon_SOURCES = basefont.cpp big52gbdecoder.cpp big5decoder.cpp configfile.cpp console.cpp gb2big5decoder.cpp gbdecoder.cpp gbkdecoder.cpp graphdev.cpp hzdecoder.cpp jisdecoder.cpp kscdecoder.cpp main.cpp window.cpp winime.cpp zhcon.cpp overspotclient.cpp nativeinputserver.cpp inputclient.cpp inputmanager.cpp inputserver.cpp candilist.cpp uniconinputserver.cpp nativebarclient.cpp mouse.cpp encfilter.c iconv_string.c cmdline.c
 EXTRA_DIST = basefont.h big52gbdecoder.h big5decoder.h configfile.h console.h debug.h fade.h gb2big5decoder.h gbdecoder.h gbkdecoder.h global.h graphdev.h hzdecoder.h jisdecoder.h keymap.h kscdecoder.h utypes.h window.h winime.h zhcon.h zhcon.conf ImmClient.h ImmComm.h ImmDefs.h ImmModule.h Phrase.h inputclient.h inputmanager.h inputserver.h nativeinputserver.h overspotclient.h candilist.h uniconinputserver.h nativebarclient.h logo.ansi logo.h mouse.h encfilter.h iconv_string.h cmdline.h opt.sh zhcon.ggo
 zhcon_LDADD = display/libdisplay.a
+zhcon_CPPFLAGS = -DSYSCONF_DIR=\"${sysconfdir}\"
 SUBDIRS = display
 
 # set the include path found by configure
@@ -281,34 +285,34 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/basefont.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/big52gbdecoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/big5decoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/candilist.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configfile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/console.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/encfilter.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gb2big5decoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gbdecoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gbkdecoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/graphdev.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hzdecoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/iconv_string.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/inputclient.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/inputmanager.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/inputserver.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/jisdecoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kscdecoder.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mouse.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nativebarclient.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nativeinputserver.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/overspotclient.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uniconinputserver.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/window.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/winime.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-basefont.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-big52gbdecoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-big5decoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-candilist.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-cmdline.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-configfile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-console.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-encfilter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-gb2big5decoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-gbdecoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-gbkdecoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-graphdev.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-hzdecoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-iconv_string.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-inputclient.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-inputmanager.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-inputserver.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-jisdecoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-kscdecoder.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-mouse.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-nativebarclient.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-nativeinputserver.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-overspotclient.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-uniconinputserver.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-window.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-winime.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zhcon-zhcon.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -324,6 +328,48 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
+zhcon-encfilter.o: encfilter.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT zhcon-encfilter.o -MD -MP -MF "$(DEPDIR)/zhcon-encfilter.Tpo" -c -o zhcon-encfilter.o `test -f 'encfilter.c' || echo '$(srcdir)/'`encfilter.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/zhcon-encfilter.Tpo" "$(DEPDIR)/zhcon-encfilter.Po"; else rm -f "$(DEPDIR)/zhcon-encfilter.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='encfilter.c' object='zhcon-encfilter.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o zhcon-encfilter.o `test -f 'encfilter.c' || echo '$(srcdir)/'`encfilter.c
+
+zhcon-encfilter.obj: encfilter.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT zhcon-encfilter.obj -MD -MP -MF "$(DEPDIR)/zhcon-encfilter.Tpo" -c -o zhcon-encfilter.obj `if test -f 'encfilter.c'; then $(CYGPATH_W) 'encfilter.c'; else $(CYGPATH_W) '$(srcdir)/encfilter.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/zhcon-encfilter.Tpo" "$(DEPDIR)/zhcon-encfilter.Po"; else rm -f "$(DEPDIR)/zhcon-encfilter.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='encfilter.c' object='zhcon-encfilter.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o zhcon-encfilter.obj `if test -f 'encfilter.c'; then $(CYGPATH_W) 'encfilter.c'; else $(CYGPATH_W) '$(srcdir)/encfilter.c'; fi`
+
+zhcon-iconv_string.o: iconv_string.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT zhcon-iconv_string.o -MD -MP -MF "$(DEPDIR)/zhcon-iconv_string.Tpo" -c -o zhcon-iconv_string.o `test -f 'iconv_string.c' || echo '$(srcdir)/'`iconv_string.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/zhcon-iconv_string.Tpo" "$(DEPDIR)/zhcon-iconv_string.Po"; else rm -f "$(DEPDIR)/zhcon-iconv_string.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iconv_string.c' object='zhcon-iconv_string.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o zhcon-iconv_string.o `test -f 'iconv_string.c' || echo '$(srcdir)/'`iconv_string.c
+
+zhcon-iconv_string.obj: iconv_string.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT zhcon-iconv_string.obj -MD -MP -MF "$(DEPDIR)/zhcon-iconv_string.Tpo" -c -o zhcon-iconv_string.obj `if test -f 'iconv_string.c'; then $(CYGPATH_W) 'iconv_string.c'; else $(CYGPATH_W) '$(srcdir)/iconv_string.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/zhcon-iconv_string.Tpo" "$(DEPDIR)/zhcon-iconv_string.Po"; else rm -f "$(DEPDIR)/zhcon-iconv_string.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iconv_string.c' object='zhcon-iconv_string.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o zhcon-iconv_string.obj `if test -f 'iconv_string.c'; then $(CYGPATH_W) 'iconv_string.c'; else $(CYGPATH_W) '$(srcdir)/iconv_string.c'; fi`
+
+zhcon-cmdline.o: cmdline.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT zhcon-cmdline.o -MD -MP -MF "$(DEPDIR)/zhcon-cmdline.Tpo" -c -o zhcon-cmdline.o `test -f 'cmdline.c' || echo '$(srcdir)/'`cmdline.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/zhcon-cmdline.Tpo" "$(DEPDIR)/zhcon-cmdline.Po"; else rm -f "$(DEPDIR)/zhcon-cmdline.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='cmdline.c' object='zhcon-cmdline.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o zhcon-cmdline.o `test -f 'cmdline.c' || echo '$(srcdir)/'`cmdline.c
+
+zhcon-cmdline.obj: cmdline.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT zhcon-cmdline.obj -MD -MP -MF "$(DEPDIR)/zhcon-cmdline.Tpo" -c -o zhcon-cmdline.obj `if test -f 'cmdline.c'; then $(CYGPATH_W) 'cmdline.c'; else $(CYGPATH_W) '$(srcdir)/cmdline.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/zhcon-cmdline.Tpo" "$(DEPDIR)/zhcon-cmdline.Po"; else rm -f "$(DEPDIR)/zhcon-cmdline.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='cmdline.c' object='zhcon-cmdline.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o zhcon-cmdline.obj `if test -f 'cmdline.c'; then $(CYGPATH_W) 'cmdline.c'; else $(CYGPATH_W) '$(srcdir)/cmdline.c'; fi`
+
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
@@ -337,6 +383,356 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+zhcon-basefont.o: basefont.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-basefont.o -MD -MP -MF "$(DEPDIR)/zhcon-basefont.Tpo" -c -o zhcon-basefont.o `test -f 'basefont.cpp' || echo '$(srcdir)/'`basefont.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-basefont.Tpo" "$(DEPDIR)/zhcon-basefont.Po"; else rm -f "$(DEPDIR)/zhcon-basefont.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='basefont.cpp' object='zhcon-basefont.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-basefont.o `test -f 'basefont.cpp' || echo '$(srcdir)/'`basefont.cpp
+
+zhcon-basefont.obj: basefont.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-basefont.obj -MD -MP -MF "$(DEPDIR)/zhcon-basefont.Tpo" -c -o zhcon-basefont.obj `if test -f 'basefont.cpp'; then $(CYGPATH_W) 'basefont.cpp'; else $(CYGPATH_W) '$(srcdir)/basefont.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-basefont.Tpo" "$(DEPDIR)/zhcon-basefont.Po"; else rm -f "$(DEPDIR)/zhcon-basefont.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='basefont.cpp' object='zhcon-basefont.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-basefont.obj `if test -f 'basefont.cpp'; then $(CYGPATH_W) 'basefont.cpp'; else $(CYGPATH_W) '$(srcdir)/basefont.cpp'; fi`
+
+zhcon-big52gbdecoder.o: big52gbdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-big52gbdecoder.o -MD -MP -MF "$(DEPDIR)/zhcon-big52gbdecoder.Tpo" -c -o zhcon-big52gbdecoder.o `test -f 'big52gbdecoder.cpp' || echo '$(srcdir)/'`big52gbdecoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-big52gbdecoder.Tpo" "$(DEPDIR)/zhcon-big52gbdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-big52gbdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='big52gbdecoder.cpp' object='zhcon-big52gbdecoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-big52gbdecoder.o `test -f 'big52gbdecoder.cpp' || echo '$(srcdir)/'`big52gbdecoder.cpp
+
+zhcon-big52gbdecoder.obj: big52gbdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-big52gbdecoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-big52gbdecoder.Tpo" -c -o zhcon-big52gbdecoder.obj `if test -f 'big52gbdecoder.cpp'; then $(CYGPATH_W) 'big52gbdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/big52gbdecoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-big52gbdecoder.Tpo" "$(DEPDIR)/zhcon-big52gbdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-big52gbdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='big52gbdecoder.cpp' object='zhcon-big52gbdecoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-big52gbdecoder.obj `if test -f 'big52gbdecoder.cpp'; then $(CYGPATH_W) 'big52gbdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/big52gbdecoder.cpp'; fi`
+
+zhcon-big5decoder.o: big5decoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-big5decoder.o -MD -MP -MF "$(DEPDIR)/zhcon-big5decoder.Tpo" -c -o zhcon-big5decoder.o `test -f 'big5decoder.cpp' || echo '$(srcdir)/'`big5decoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-big5decoder.Tpo" "$(DEPDIR)/zhcon-big5decoder.Po"; else rm -f "$(DEPDIR)/zhcon-big5decoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='big5decoder.cpp' object='zhcon-big5decoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-big5decoder.o `test -f 'big5decoder.cpp' || echo '$(srcdir)/'`big5decoder.cpp
+
+zhcon-big5decoder.obj: big5decoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-big5decoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-big5decoder.Tpo" -c -o zhcon-big5decoder.obj `if test -f 'big5decoder.cpp'; then $(CYGPATH_W) 'big5decoder.cpp'; else $(CYGPATH_W) '$(srcdir)/big5decoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-big5decoder.Tpo" "$(DEPDIR)/zhcon-big5decoder.Po"; else rm -f "$(DEPDIR)/zhcon-big5decoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='big5decoder.cpp' object='zhcon-big5decoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-big5decoder.obj `if test -f 'big5decoder.cpp'; then $(CYGPATH_W) 'big5decoder.cpp'; else $(CYGPATH_W) '$(srcdir)/big5decoder.cpp'; fi`
+
+zhcon-configfile.o: configfile.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-configfile.o -MD -MP -MF "$(DEPDIR)/zhcon-configfile.Tpo" -c -o zhcon-configfile.o `test -f 'configfile.cpp' || echo '$(srcdir)/'`configfile.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-configfile.Tpo" "$(DEPDIR)/zhcon-configfile.Po"; else rm -f "$(DEPDIR)/zhcon-configfile.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='configfile.cpp' object='zhcon-configfile.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-configfile.o `test -f 'configfile.cpp' || echo '$(srcdir)/'`configfile.cpp
+
+zhcon-configfile.obj: configfile.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-configfile.obj -MD -MP -MF "$(DEPDIR)/zhcon-configfile.Tpo" -c -o zhcon-configfile.obj `if test -f 'configfile.cpp'; then $(CYGPATH_W) 'configfile.cpp'; else $(CYGPATH_W) '$(srcdir)/configfile.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-configfile.Tpo" "$(DEPDIR)/zhcon-configfile.Po"; else rm -f "$(DEPDIR)/zhcon-configfile.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='configfile.cpp' object='zhcon-configfile.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-configfile.obj `if test -f 'configfile.cpp'; then $(CYGPATH_W) 'configfile.cpp'; else $(CYGPATH_W) '$(srcdir)/configfile.cpp'; fi`
+
+zhcon-console.o: console.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-console.o -MD -MP -MF "$(DEPDIR)/zhcon-console.Tpo" -c -o zhcon-console.o `test -f 'console.cpp' || echo '$(srcdir)/'`console.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-console.Tpo" "$(DEPDIR)/zhcon-console.Po"; else rm -f "$(DEPDIR)/zhcon-console.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='console.cpp' object='zhcon-console.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-console.o `test -f 'console.cpp' || echo '$(srcdir)/'`console.cpp
+
+zhcon-console.obj: console.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-console.obj -MD -MP -MF "$(DEPDIR)/zhcon-console.Tpo" -c -o zhcon-console.obj `if test -f 'console.cpp'; then $(CYGPATH_W) 'console.cpp'; else $(CYGPATH_W) '$(srcdir)/console.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-console.Tpo" "$(DEPDIR)/zhcon-console.Po"; else rm -f "$(DEPDIR)/zhcon-console.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='console.cpp' object='zhcon-console.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-console.obj `if test -f 'console.cpp'; then $(CYGPATH_W) 'console.cpp'; else $(CYGPATH_W) '$(srcdir)/console.cpp'; fi`
+
+zhcon-gb2big5decoder.o: gb2big5decoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-gb2big5decoder.o -MD -MP -MF "$(DEPDIR)/zhcon-gb2big5decoder.Tpo" -c -o zhcon-gb2big5decoder.o `test -f 'gb2big5decoder.cpp' || echo '$(srcdir)/'`gb2big5decoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-gb2big5decoder.Tpo" "$(DEPDIR)/zhcon-gb2big5decoder.Po"; else rm -f "$(DEPDIR)/zhcon-gb2big5decoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gb2big5decoder.cpp' object='zhcon-gb2big5decoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-gb2big5decoder.o `test -f 'gb2big5decoder.cpp' || echo '$(srcdir)/'`gb2big5decoder.cpp
+
+zhcon-gb2big5decoder.obj: gb2big5decoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-gb2big5decoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-gb2big5decoder.Tpo" -c -o zhcon-gb2big5decoder.obj `if test -f 'gb2big5decoder.cpp'; then $(CYGPATH_W) 'gb2big5decoder.cpp'; else $(CYGPATH_W) '$(srcdir)/gb2big5decoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-gb2big5decoder.Tpo" "$(DEPDIR)/zhcon-gb2big5decoder.Po"; else rm -f "$(DEPDIR)/zhcon-gb2big5decoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gb2big5decoder.cpp' object='zhcon-gb2big5decoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-gb2big5decoder.obj `if test -f 'gb2big5decoder.cpp'; then $(CYGPATH_W) 'gb2big5decoder.cpp'; else $(CYGPATH_W) '$(srcdir)/gb2big5decoder.cpp'; fi`
+
+zhcon-gbdecoder.o: gbdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-gbdecoder.o -MD -MP -MF "$(DEPDIR)/zhcon-gbdecoder.Tpo" -c -o zhcon-gbdecoder.o `test -f 'gbdecoder.cpp' || echo '$(srcdir)/'`gbdecoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-gbdecoder.Tpo" "$(DEPDIR)/zhcon-gbdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-gbdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gbdecoder.cpp' object='zhcon-gbdecoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-gbdecoder.o `test -f 'gbdecoder.cpp' || echo '$(srcdir)/'`gbdecoder.cpp
+
+zhcon-gbdecoder.obj: gbdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-gbdecoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-gbdecoder.Tpo" -c -o zhcon-gbdecoder.obj `if test -f 'gbdecoder.cpp'; then $(CYGPATH_W) 'gbdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/gbdecoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-gbdecoder.Tpo" "$(DEPDIR)/zhcon-gbdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-gbdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gbdecoder.cpp' object='zhcon-gbdecoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-gbdecoder.obj `if test -f 'gbdecoder.cpp'; then $(CYGPATH_W) 'gbdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/gbdecoder.cpp'; fi`
+
+zhcon-gbkdecoder.o: gbkdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-gbkdecoder.o -MD -MP -MF "$(DEPDIR)/zhcon-gbkdecoder.Tpo" -c -o zhcon-gbkdecoder.o `test -f 'gbkdecoder.cpp' || echo '$(srcdir)/'`gbkdecoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-gbkdecoder.Tpo" "$(DEPDIR)/zhcon-gbkdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-gbkdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gbkdecoder.cpp' object='zhcon-gbkdecoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-gbkdecoder.o `test -f 'gbkdecoder.cpp' || echo '$(srcdir)/'`gbkdecoder.cpp
+
+zhcon-gbkdecoder.obj: gbkdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-gbkdecoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-gbkdecoder.Tpo" -c -o zhcon-gbkdecoder.obj `if test -f 'gbkdecoder.cpp'; then $(CYGPATH_W) 'gbkdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/gbkdecoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-gbkdecoder.Tpo" "$(DEPDIR)/zhcon-gbkdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-gbkdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='gbkdecoder.cpp' object='zhcon-gbkdecoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-gbkdecoder.obj `if test -f 'gbkdecoder.cpp'; then $(CYGPATH_W) 'gbkdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/gbkdecoder.cpp'; fi`
+
+zhcon-graphdev.o: graphdev.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-graphdev.o -MD -MP -MF "$(DEPDIR)/zhcon-graphdev.Tpo" -c -o zhcon-graphdev.o `test -f 'graphdev.cpp' || echo '$(srcdir)/'`graphdev.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-graphdev.Tpo" "$(DEPDIR)/zhcon-graphdev.Po"; else rm -f "$(DEPDIR)/zhcon-graphdev.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='graphdev.cpp' object='zhcon-graphdev.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-graphdev.o `test -f 'graphdev.cpp' || echo '$(srcdir)/'`graphdev.cpp
+
+zhcon-graphdev.obj: graphdev.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-graphdev.obj -MD -MP -MF "$(DEPDIR)/zhcon-graphdev.Tpo" -c -o zhcon-graphdev.obj `if test -f 'graphdev.cpp'; then $(CYGPATH_W) 'graphdev.cpp'; else $(CYGPATH_W) '$(srcdir)/graphdev.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-graphdev.Tpo" "$(DEPDIR)/zhcon-graphdev.Po"; else rm -f "$(DEPDIR)/zhcon-graphdev.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='graphdev.cpp' object='zhcon-graphdev.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-graphdev.obj `if test -f 'graphdev.cpp'; then $(CYGPATH_W) 'graphdev.cpp'; else $(CYGPATH_W) '$(srcdir)/graphdev.cpp'; fi`
+
+zhcon-hzdecoder.o: hzdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-hzdecoder.o -MD -MP -MF "$(DEPDIR)/zhcon-hzdecoder.Tpo" -c -o zhcon-hzdecoder.o `test -f 'hzdecoder.cpp' || echo '$(srcdir)/'`hzdecoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-hzdecoder.Tpo" "$(DEPDIR)/zhcon-hzdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-hzdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='hzdecoder.cpp' object='zhcon-hzdecoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-hzdecoder.o `test -f 'hzdecoder.cpp' || echo '$(srcdir)/'`hzdecoder.cpp
+
+zhcon-hzdecoder.obj: hzdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-hzdecoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-hzdecoder.Tpo" -c -o zhcon-hzdecoder.obj `if test -f 'hzdecoder.cpp'; then $(CYGPATH_W) 'hzdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/hzdecoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-hzdecoder.Tpo" "$(DEPDIR)/zhcon-hzdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-hzdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='hzdecoder.cpp' object='zhcon-hzdecoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-hzdecoder.obj `if test -f 'hzdecoder.cpp'; then $(CYGPATH_W) 'hzdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/hzdecoder.cpp'; fi`
+
+zhcon-jisdecoder.o: jisdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-jisdecoder.o -MD -MP -MF "$(DEPDIR)/zhcon-jisdecoder.Tpo" -c -o zhcon-jisdecoder.o `test -f 'jisdecoder.cpp' || echo '$(srcdir)/'`jisdecoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-jisdecoder.Tpo" "$(DEPDIR)/zhcon-jisdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-jisdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='jisdecoder.cpp' object='zhcon-jisdecoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-jisdecoder.o `test -f 'jisdecoder.cpp' || echo '$(srcdir)/'`jisdecoder.cpp
+
+zhcon-jisdecoder.obj: jisdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-jisdecoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-jisdecoder.Tpo" -c -o zhcon-jisdecoder.obj `if test -f 'jisdecoder.cpp'; then $(CYGPATH_W) 'jisdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/jisdecoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-jisdecoder.Tpo" "$(DEPDIR)/zhcon-jisdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-jisdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='jisdecoder.cpp' object='zhcon-jisdecoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-jisdecoder.obj `if test -f 'jisdecoder.cpp'; then $(CYGPATH_W) 'jisdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/jisdecoder.cpp'; fi`
+
+zhcon-kscdecoder.o: kscdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-kscdecoder.o -MD -MP -MF "$(DEPDIR)/zhcon-kscdecoder.Tpo" -c -o zhcon-kscdecoder.o `test -f 'kscdecoder.cpp' || echo '$(srcdir)/'`kscdecoder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-kscdecoder.Tpo" "$(DEPDIR)/zhcon-kscdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-kscdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kscdecoder.cpp' object='zhcon-kscdecoder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-kscdecoder.o `test -f 'kscdecoder.cpp' || echo '$(srcdir)/'`kscdecoder.cpp
+
+zhcon-kscdecoder.obj: kscdecoder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-kscdecoder.obj -MD -MP -MF "$(DEPDIR)/zhcon-kscdecoder.Tpo" -c -o zhcon-kscdecoder.obj `if test -f 'kscdecoder.cpp'; then $(CYGPATH_W) 'kscdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/kscdecoder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-kscdecoder.Tpo" "$(DEPDIR)/zhcon-kscdecoder.Po"; else rm -f "$(DEPDIR)/zhcon-kscdecoder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kscdecoder.cpp' object='zhcon-kscdecoder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-kscdecoder.obj `if test -f 'kscdecoder.cpp'; then $(CYGPATH_W) 'kscdecoder.cpp'; else $(CYGPATH_W) '$(srcdir)/kscdecoder.cpp'; fi`
+
+zhcon-main.o: main.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-main.o -MD -MP -MF "$(DEPDIR)/zhcon-main.Tpo" -c -o zhcon-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-main.Tpo" "$(DEPDIR)/zhcon-main.Po"; else rm -f "$(DEPDIR)/zhcon-main.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='zhcon-main.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+
+zhcon-main.obj: main.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-main.obj -MD -MP -MF "$(DEPDIR)/zhcon-main.Tpo" -c -o zhcon-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-main.Tpo" "$(DEPDIR)/zhcon-main.Po"; else rm -f "$(DEPDIR)/zhcon-main.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='zhcon-main.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+
+zhcon-window.o: window.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-window.o -MD -MP -MF "$(DEPDIR)/zhcon-window.Tpo" -c -o zhcon-window.o `test -f 'window.cpp' || echo '$(srcdir)/'`window.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-window.Tpo" "$(DEPDIR)/zhcon-window.Po"; else rm -f "$(DEPDIR)/zhcon-window.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='window.cpp' object='zhcon-window.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-window.o `test -f 'window.cpp' || echo '$(srcdir)/'`window.cpp
+
+zhcon-window.obj: window.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-window.obj -MD -MP -MF "$(DEPDIR)/zhcon-window.Tpo" -c -o zhcon-window.obj `if test -f 'window.cpp'; then $(CYGPATH_W) 'window.cpp'; else $(CYGPATH_W) '$(srcdir)/window.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-window.Tpo" "$(DEPDIR)/zhcon-window.Po"; else rm -f "$(DEPDIR)/zhcon-window.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='window.cpp' object='zhcon-window.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-window.obj `if test -f 'window.cpp'; then $(CYGPATH_W) 'window.cpp'; else $(CYGPATH_W) '$(srcdir)/window.cpp'; fi`
+
+zhcon-winime.o: winime.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-winime.o -MD -MP -MF "$(DEPDIR)/zhcon-winime.Tpo" -c -o zhcon-winime.o `test -f 'winime.cpp' || echo '$(srcdir)/'`winime.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-winime.Tpo" "$(DEPDIR)/zhcon-winime.Po"; else rm -f "$(DEPDIR)/zhcon-winime.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='winime.cpp' object='zhcon-winime.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-winime.o `test -f 'winime.cpp' || echo '$(srcdir)/'`winime.cpp
+
+zhcon-winime.obj: winime.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-winime.obj -MD -MP -MF "$(DEPDIR)/zhcon-winime.Tpo" -c -o zhcon-winime.obj `if test -f 'winime.cpp'; then $(CYGPATH_W) 'winime.cpp'; else $(CYGPATH_W) '$(srcdir)/winime.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-winime.Tpo" "$(DEPDIR)/zhcon-winime.Po"; else rm -f "$(DEPDIR)/zhcon-winime.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='winime.cpp' object='zhcon-winime.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-winime.obj `if test -f 'winime.cpp'; then $(CYGPATH_W) 'winime.cpp'; else $(CYGPATH_W) '$(srcdir)/winime.cpp'; fi`
+
+zhcon-zhcon.o: zhcon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-zhcon.o -MD -MP -MF "$(DEPDIR)/zhcon-zhcon.Tpo" -c -o zhcon-zhcon.o `test -f 'zhcon.cpp' || echo '$(srcdir)/'`zhcon.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-zhcon.Tpo" "$(DEPDIR)/zhcon-zhcon.Po"; else rm -f "$(DEPDIR)/zhcon-zhcon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='zhcon.cpp' object='zhcon-zhcon.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-zhcon.o `test -f 'zhcon.cpp' || echo '$(srcdir)/'`zhcon.cpp
+
+zhcon-zhcon.obj: zhcon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-zhcon.obj -MD -MP -MF "$(DEPDIR)/zhcon-zhcon.Tpo" -c -o zhcon-zhcon.obj `if test -f 'zhcon.cpp'; then $(CYGPATH_W) 'zhcon.cpp'; else $(CYGPATH_W) '$(srcdir)/zhcon.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-zhcon.Tpo" "$(DEPDIR)/zhcon-zhcon.Po"; else rm -f "$(DEPDIR)/zhcon-zhcon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='zhcon.cpp' object='zhcon-zhcon.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-zhcon.obj `if test -f 'zhcon.cpp'; then $(CYGPATH_W) 'zhcon.cpp'; else $(CYGPATH_W) '$(srcdir)/zhcon.cpp'; fi`
+
+zhcon-overspotclient.o: overspotclient.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-overspotclient.o -MD -MP -MF "$(DEPDIR)/zhcon-overspotclient.Tpo" -c -o zhcon-overspotclient.o `test -f 'overspotclient.cpp' || echo '$(srcdir)/'`overspotclient.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-overspotclient.Tpo" "$(DEPDIR)/zhcon-overspotclient.Po"; else rm -f "$(DEPDIR)/zhcon-overspotclient.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='overspotclient.cpp' object='zhcon-overspotclient.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-overspotclient.o `test -f 'overspotclient.cpp' || echo '$(srcdir)/'`overspotclient.cpp
+
+zhcon-overspotclient.obj: overspotclient.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-overspotclient.obj -MD -MP -MF "$(DEPDIR)/zhcon-overspotclient.Tpo" -c -o zhcon-overspotclient.obj `if test -f 'overspotclient.cpp'; then $(CYGPATH_W) 'overspotclient.cpp'; else $(CYGPATH_W) '$(srcdir)/overspotclient.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-overspotclient.Tpo" "$(DEPDIR)/zhcon-overspotclient.Po"; else rm -f "$(DEPDIR)/zhcon-overspotclient.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='overspotclient.cpp' object='zhcon-overspotclient.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-overspotclient.obj `if test -f 'overspotclient.cpp'; then $(CYGPATH_W) 'overspotclient.cpp'; else $(CYGPATH_W) '$(srcdir)/overspotclient.cpp'; fi`
+
+zhcon-nativeinputserver.o: nativeinputserver.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-nativeinputserver.o -MD -MP -MF "$(DEPDIR)/zhcon-nativeinputserver.Tpo" -c -o zhcon-nativeinputserver.o `test -f 'nativeinputserver.cpp' || echo '$(srcdir)/'`nativeinputserver.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-nativeinputserver.Tpo" "$(DEPDIR)/zhcon-nativeinputserver.Po"; else rm -f "$(DEPDIR)/zhcon-nativeinputserver.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='nativeinputserver.cpp' object='zhcon-nativeinputserver.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-nativeinputserver.o `test -f 'nativeinputserver.cpp' || echo '$(srcdir)/'`nativeinputserver.cpp
+
+zhcon-nativeinputserver.obj: nativeinputserver.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-nativeinputserver.obj -MD -MP -MF "$(DEPDIR)/zhcon-nativeinputserver.Tpo" -c -o zhcon-nativeinputserver.obj `if test -f 'nativeinputserver.cpp'; then $(CYGPATH_W) 'nativeinputserver.cpp'; else $(CYGPATH_W) '$(srcdir)/nativeinputserver.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-nativeinputserver.Tpo" "$(DEPDIR)/zhcon-nativeinputserver.Po"; else rm -f "$(DEPDIR)/zhcon-nativeinputserver.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='nativeinputserver.cpp' object='zhcon-nativeinputserver.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-nativeinputserver.obj `if test -f 'nativeinputserver.cpp'; then $(CYGPATH_W) 'nativeinputserver.cpp'; else $(CYGPATH_W) '$(srcdir)/nativeinputserver.cpp'; fi`
+
+zhcon-inputclient.o: inputclient.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-inputclient.o -MD -MP -MF "$(DEPDIR)/zhcon-inputclient.Tpo" -c -o zhcon-inputclient.o `test -f 'inputclient.cpp' || echo '$(srcdir)/'`inputclient.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-inputclient.Tpo" "$(DEPDIR)/zhcon-inputclient.Po"; else rm -f "$(DEPDIR)/zhcon-inputclient.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='inputclient.cpp' object='zhcon-inputclient.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-inputclient.o `test -f 'inputclient.cpp' || echo '$(srcdir)/'`inputclient.cpp
+
+zhcon-inputclient.obj: inputclient.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-inputclient.obj -MD -MP -MF "$(DEPDIR)/zhcon-inputclient.Tpo" -c -o zhcon-inputclient.obj `if test -f 'inputclient.cpp'; then $(CYGPATH_W) 'inputclient.cpp'; else $(CYGPATH_W) '$(srcdir)/inputclient.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-inputclient.Tpo" "$(DEPDIR)/zhcon-inputclient.Po"; else rm -f "$(DEPDIR)/zhcon-inputclient.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='inputclient.cpp' object='zhcon-inputclient.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-inputclient.obj `if test -f 'inputclient.cpp'; then $(CYGPATH_W) 'inputclient.cpp'; else $(CYGPATH_W) '$(srcdir)/inputclient.cpp'; fi`
+
+zhcon-inputmanager.o: inputmanager.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-inputmanager.o -MD -MP -MF "$(DEPDIR)/zhcon-inputmanager.Tpo" -c -o zhcon-inputmanager.o `test -f 'inputmanager.cpp' || echo '$(srcdir)/'`inputmanager.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-inputmanager.Tpo" "$(DEPDIR)/zhcon-inputmanager.Po"; else rm -f "$(DEPDIR)/zhcon-inputmanager.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='inputmanager.cpp' object='zhcon-inputmanager.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-inputmanager.o `test -f 'inputmanager.cpp' || echo '$(srcdir)/'`inputmanager.cpp
+
+zhcon-inputmanager.obj: inputmanager.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-inputmanager.obj -MD -MP -MF "$(DEPDIR)/zhcon-inputmanager.Tpo" -c -o zhcon-inputmanager.obj `if test -f 'inputmanager.cpp'; then $(CYGPATH_W) 'inputmanager.cpp'; else $(CYGPATH_W) '$(srcdir)/inputmanager.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-inputmanager.Tpo" "$(DEPDIR)/zhcon-inputmanager.Po"; else rm -f "$(DEPDIR)/zhcon-inputmanager.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='inputmanager.cpp' object='zhcon-inputmanager.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-inputmanager.obj `if test -f 'inputmanager.cpp'; then $(CYGPATH_W) 'inputmanager.cpp'; else $(CYGPATH_W) '$(srcdir)/inputmanager.cpp'; fi`
+
+zhcon-inputserver.o: inputserver.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-inputserver.o -MD -MP -MF "$(DEPDIR)/zhcon-inputserver.Tpo" -c -o zhcon-inputserver.o `test -f 'inputserver.cpp' || echo '$(srcdir)/'`inputserver.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-inputserver.Tpo" "$(DEPDIR)/zhcon-inputserver.Po"; else rm -f "$(DEPDIR)/zhcon-inputserver.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='inputserver.cpp' object='zhcon-inputserver.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-inputserver.o `test -f 'inputserver.cpp' || echo '$(srcdir)/'`inputserver.cpp
+
+zhcon-inputserver.obj: inputserver.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-inputserver.obj -MD -MP -MF "$(DEPDIR)/zhcon-inputserver.Tpo" -c -o zhcon-inputserver.obj `if test -f 'inputserver.cpp'; then $(CYGPATH_W) 'inputserver.cpp'; else $(CYGPATH_W) '$(srcdir)/inputserver.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-inputserver.Tpo" "$(DEPDIR)/zhcon-inputserver.Po"; else rm -f "$(DEPDIR)/zhcon-inputserver.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='inputserver.cpp' object='zhcon-inputserver.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-inputserver.obj `if test -f 'inputserver.cpp'; then $(CYGPATH_W) 'inputserver.cpp'; else $(CYGPATH_W) '$(srcdir)/inputserver.cpp'; fi`
+
+zhcon-candilist.o: candilist.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-candilist.o -MD -MP -MF "$(DEPDIR)/zhcon-candilist.Tpo" -c -o zhcon-candilist.o `test -f 'candilist.cpp' || echo '$(srcdir)/'`candilist.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-candilist.Tpo" "$(DEPDIR)/zhcon-candilist.Po"; else rm -f "$(DEPDIR)/zhcon-candilist.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='candilist.cpp' object='zhcon-candilist.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-candilist.o `test -f 'candilist.cpp' || echo '$(srcdir)/'`candilist.cpp
+
+zhcon-candilist.obj: candilist.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-candilist.obj -MD -MP -MF "$(DEPDIR)/zhcon-candilist.Tpo" -c -o zhcon-candilist.obj `if test -f 'candilist.cpp'; then $(CYGPATH_W) 'candilist.cpp'; else $(CYGPATH_W) '$(srcdir)/candilist.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-candilist.Tpo" "$(DEPDIR)/zhcon-candilist.Po"; else rm -f "$(DEPDIR)/zhcon-candilist.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='candilist.cpp' object='zhcon-candilist.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-candilist.obj `if test -f 'candilist.cpp'; then $(CYGPATH_W) 'candilist.cpp'; else $(CYGPATH_W) '$(srcdir)/candilist.cpp'; fi`
+
+zhcon-uniconinputserver.o: uniconinputserver.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-uniconinputserver.o -MD -MP -MF "$(DEPDIR)/zhcon-uniconinputserver.Tpo" -c -o zhcon-uniconinputserver.o `test -f 'uniconinputserver.cpp' || echo '$(srcdir)/'`uniconinputserver.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-uniconinputserver.Tpo" "$(DEPDIR)/zhcon-uniconinputserver.Po"; else rm -f "$(DEPDIR)/zhcon-uniconinputserver.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='uniconinputserver.cpp' object='zhcon-uniconinputserver.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-uniconinputserver.o `test -f 'uniconinputserver.cpp' || echo '$(srcdir)/'`uniconinputserver.cpp
+
+zhcon-uniconinputserver.obj: uniconinputserver.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-uniconinputserver.obj -MD -MP -MF "$(DEPDIR)/zhcon-uniconinputserver.Tpo" -c -o zhcon-uniconinputserver.obj `if test -f 'uniconinputserver.cpp'; then $(CYGPATH_W) 'uniconinputserver.cpp'; else $(CYGPATH_W) '$(srcdir)/uniconinputserver.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-uniconinputserver.Tpo" "$(DEPDIR)/zhcon-uniconinputserver.Po"; else rm -f "$(DEPDIR)/zhcon-uniconinputserver.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='uniconinputserver.cpp' object='zhcon-uniconinputserver.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-uniconinputserver.obj `if test -f 'uniconinputserver.cpp'; then $(CYGPATH_W) 'uniconinputserver.cpp'; else $(CYGPATH_W) '$(srcdir)/uniconinputserver.cpp'; fi`
+
+zhcon-nativebarclient.o: nativebarclient.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-nativebarclient.o -MD -MP -MF "$(DEPDIR)/zhcon-nativebarclient.Tpo" -c -o zhcon-nativebarclient.o `test -f 'nativebarclient.cpp' || echo '$(srcdir)/'`nativebarclient.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-nativebarclient.Tpo" "$(DEPDIR)/zhcon-nativebarclient.Po"; else rm -f "$(DEPDIR)/zhcon-nativebarclient.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='nativebarclient.cpp' object='zhcon-nativebarclient.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-nativebarclient.o `test -f 'nativebarclient.cpp' || echo '$(srcdir)/'`nativebarclient.cpp
+
+zhcon-nativebarclient.obj: nativebarclient.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-nativebarclient.obj -MD -MP -MF "$(DEPDIR)/zhcon-nativebarclient.Tpo" -c -o zhcon-nativebarclient.obj `if test -f 'nativebarclient.cpp'; then $(CYGPATH_W) 'nativebarclient.cpp'; else $(CYGPATH_W) '$(srcdir)/nativebarclient.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-nativebarclient.Tpo" "$(DEPDIR)/zhcon-nativebarclient.Po"; else rm -f "$(DEPDIR)/zhcon-nativebarclient.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='nativebarclient.cpp' object='zhcon-nativebarclient.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-nativebarclient.obj `if test -f 'nativebarclient.cpp'; then $(CYGPATH_W) 'nativebarclient.cpp'; else $(CYGPATH_W) '$(srcdir)/nativebarclient.cpp'; fi`
+
+zhcon-mouse.o: mouse.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-mouse.o -MD -MP -MF "$(DEPDIR)/zhcon-mouse.Tpo" -c -o zhcon-mouse.o `test -f 'mouse.cpp' || echo '$(srcdir)/'`mouse.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-mouse.Tpo" "$(DEPDIR)/zhcon-mouse.Po"; else rm -f "$(DEPDIR)/zhcon-mouse.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mouse.cpp' object='zhcon-mouse.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-mouse.o `test -f 'mouse.cpp' || echo '$(srcdir)/'`mouse.cpp
+
+zhcon-mouse.obj: mouse.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT zhcon-mouse.obj -MD -MP -MF "$(DEPDIR)/zhcon-mouse.Tpo" -c -o zhcon-mouse.obj `if test -f 'mouse.cpp'; then $(CYGPATH_W) 'mouse.cpp'; else $(CYGPATH_W) '$(srcdir)/mouse.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/zhcon-mouse.Tpo" "$(DEPDIR)/zhcon-mouse.Po"; else rm -f "$(DEPDIR)/zhcon-mouse.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mouse.cpp' object='zhcon-mouse.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(zhcon_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o zhcon-mouse.obj `if test -f 'mouse.cpp'; then $(CYGPATH_W) 'mouse.cpp'; else $(CYGPATH_W) '$(srcdir)/mouse.cpp'; fi`
 uninstall-info-am:
 
 # This directory's subdirectories are mostly independent; you can cd
@@ -605,10 +1001,10 @@ install-exec-local:
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)/etc
-	$(INSTALL_DATA) $(srcdir)/zhcon.conf $(DESTDIR)/etc/zhcon.conf
+	$(INSTALL_DATA) $(srcdir)/zhcon.conf ${sysconfdir}/zhcon.conf
 
 uninstall-local:
-	-rm -f $(prefix)/etc/zhcon.conf
+	-rm -f ${sysconfdir}/zhcon.conf
 
 # the library search path.
 #zhcon_LDFLAGS = $(all_libraries) -L/usr/lib/unicon 

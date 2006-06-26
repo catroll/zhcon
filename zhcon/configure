@@ -1899,7 +1899,7 @@ fi;
 
 CFLAGS="$CFLAGS -funsigned-char -O2"
 CXXFLAGS="$CXXFLAGS -funsigned-char -O2"
-if test $enable_debug = 'yes';then
+if test "x$enable_debug" = "xyes";then
         CFLAGS="$CFLAGS -O0 -g3 -Wall"
         CXXFLAGS="$CXXFLAGS -O0 -g3 -Wall"
 else

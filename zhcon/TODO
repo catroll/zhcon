@@ -13,6 +13,7 @@ zhcon is not bug free. Here's some minor bug found so far:
 
 Todo (sorted by priority):
 high:
+* only set +s bit when installed as root
 * only set LC_CTYPE on start instead of LC_ALL
 * input interface clean up
 * complete bsd port
