@@ -1,3 +1,8 @@
+2006-06-23  ejoy <ejoy@users.sourceforge.net>
+    * Fixed: warning when building configure, reported by robert.zhangle
+    * Fixed: place zhcon.conf under sysconfdir such as /configure --sysconfdir=/tmp/ 
+        as suggested by robert.zhangle
+
 2006-05-15 ejoy <ejoy@users.sourceforge.net>
     * Removed: seteuid() call when reading zhcon.conf, potential security hole
     * Fixed:   zhcon hangs when opened from /dev/pts/xxx

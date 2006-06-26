@@ -5,6 +5,8 @@ EXTRA_DIST = basefont.h big52gbdecoder.h big5decoder.h configfile.h console.h de
 
 zhcon_LDADD = display/libdisplay.a
 
+zhcon_CPPFLAGS = -DSYSCONF_DIR=\"${sysconfdir}\"
+
 SUBDIRS = display
 
 install-exec-local:
@@ -12,10 +14,10 @@ install-exec-local:
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)/etc
-	$(INSTALL_DATA) $(srcdir)/zhcon.conf $(DESTDIR)/etc/zhcon.conf
+	$(INSTALL_DATA) $(srcdir)/zhcon.conf ${sysconfdir}/zhcon.conf
 
 uninstall-local:
-	-rm -f $(prefix)/etc/zhcon.conf
+	-rm -f ${sysconfdir}/zhcon.conf
 
 # set the include path found by configure
 INCLUDES= $(all_includes)
