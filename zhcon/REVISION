@@ -1,3 +1,5 @@
+each release will be tagged here.
+
 to get source code for 0.2.6 use:
 svn co --revision 11 https://svn.sourceforge.net/svnroot/zhcon zhcon
 
