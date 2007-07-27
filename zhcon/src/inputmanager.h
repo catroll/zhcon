@@ -27,6 +27,8 @@ using namespace std;
 #include <cassert>
 #include <vector>
 
+#include <sys/types.h>
+
 #include "mouse.h"
 #if defined(__FreeBSD__)
     #include <sys/kbio.h>

@@ -16,6 +16,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <cstdlib>
+
 #include "inputclient.h"
 
 Console* InputClient::mpCon = NULL;
