@@ -1,3 +1,6 @@
+2007-07-27  ejoy <ejoy@users.sourceforge.net>
+    * Fixed: gcc 4.3 build bug reported by Martin Michlmayr
+
 2006-06-23  ejoy <ejoy@users.sourceforge.net>
     * Fixed: warning when building configure, reported by robert.zhangle
     * Fixed: place zhcon.conf under sysconfdir such as /configure --sysconfdir=/tmp/ 
