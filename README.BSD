@@ -1,13 +1,13 @@
 NOTE: BSD PORT IS BROKEN IN THIS VERSION!!!
 
-0. ��ע�� zhcon Ŀǰֻ���ڵ�һ������̨����!
-   �������screenʹ�ö������̨:
+0. 请注意 zhcon 目前只能在第一个控制台运行!
+   可以配合screen使用多个控制台:
    zhcon screen
-   ������screen
-   ֮�������Ctrl-a Ctrl-c�������µ�console session
-   ���������� man screen
+   来启动screen
+   之后可以用Ctrl-a Ctrl-c来产生新的console session
+   其它功能请 man screen
 
-   ���Խ����½ű��ŵ�.bashrc�����ڵ�¼��ʱ���Զ�����zhcon��screen
+   可以将以下脚本放到.bashrc中来在登录的时候自动启动zhcon和screen
     #automatic start zhcon with screen when login on the 1th console on BSD
     if [ $OSTYPE == 'freebsd4.8' ]; then
         if [ `tty` == "/dev/ttyv0" ]; then
@@ -15,64 +15,64 @@ NOTE: BSD PORT IS BROKEN IN THIS VERSION!!!
         fi
     fi
 
-1. ֧��Fbdev
-   ѡ��ʹ��Fbdevǰ������ִ�У�
+1. 支持Fbdev
+   选择使用Fbdev前，先请执行：
       vidcontrol -i mode
-   ����Ƿ���ģʽG(raph)�� 640x480��ѡ� ɫ�����depthΪ4��ѡ�����У�
-˵��Ŀǰkenerl����֧��VGA��16ɫģʽ�����Բ�ʹ��fbdev���������kernel���鷳��
-   ���û�У�ִ���������
+   检查是否有模式G(raph)， 640x480的选项， 色彩深度depth为4的选项。如果有，
+说明目前kenerl至少支持VGA的16色模式，可以不使用fbdev，避免编译kernel的麻烦。
+   如果没有，执行以下命令：
       cd /sys/i386/config
       cp GENERIC VESA
-   �༭�ļ�VESA���ҵ���������"device vga0"���У�������������ϣ�
+   编辑文件VESA，找到包含文字"device vga0"的行，在这行下面加上：
       options VESA
-   �ҵ���������"device sc0"���У�������������ϣ�
+   找到包含文字"device sc0"的行，在这行下面加上：
       options SC_PIXEL_MODE
-   ִ���������
+   执行以下命令：
       /usr/sbin/config VESA
       cd /sys/compile/VESA
       make depend
       make
       make install
-   ���������������¼��ִ�У�
+   重启动计算机，登录后执行：
       vidcontrol -i mode
 
-   ���������Ӧ������ģʽG(raph)�� 640x480��ѡ�ɫ�����depthΪ8��ѡ�
-   �༭/etc/zhcon.conf���޸ģ�
+   如果正常，应该有有模式G(raph)， 640x480的选项，色彩深度depth为8的选项。
+   编辑/etc/zhcon.conf，修改：
       x_resolution = 640
       y_resolution = 480
       color_depth = 8
-   Ȼ������zhcon��
-   ����������ֱ��ʸ��ߵ�ģʽ��Ҳ�������ԡ�
+   然后启动zhcon。
+   如果有其它分辨率更高的模式，也可以试试。
 
-2. ��shell�������У��������뺺�֡�
-   ϵͳȱʡ��shell��csh��csh��֧��LANG�İ汾������man csh���ܣ���ǰʹ�õ�csh
-�汾�Ƿ�֧��LANGȡ���ڱ��뿪�ء�
-   ִ��һ�����
+2. 在shell的命令行，不能输入汉字。
+   系统缺省的shell是csh，csh有支持LANG的版本。根据man csh介绍，当前使用的csh
+版本是否支持LANG取决于编译开关。
+   执行一下命令：
        stty pass8
-   ��Ȼ�������뺺�֡�
-   ����bash�����ڵ�¼�ű�.profile�ļ��а����������ã�
+   仍然不能输入汉字。
+   换用bash，并在登录脚本.profile文件中包括以下设置：
         bind 'set convert-meta off'
         bind 'set meta-flag on'
         bind 'set output-meta on'
-   �������뺺�֣��ɴ˶϶�csh�²������뺺�֣�Ӧ����zhcon�����⡣
+   可以输入汉字，由此断定csh下不能输入汉字，应不是zhcon的问题。
 
-3. ��zhcon���к�ִ��/stand/sysinstall��midc��Ӧ�����������λ�ò���ȷ����������ʾ�����롣
-   FreeBSDʹ�õ�TERMһ����cons25����Щ���ⶼ��/etc/termcap�������йأ���Ҫ�����У�
-     ���ܶ�̬������Ļ���������̶�Ϊ25�С�������ó�cgywin�Ϳ��Խ��������⣬
-     û���ַ������壬Ӧ����������Ϊ��ǰ�ն˲�֧���ַ���������escape���У������Ʊ�����ȫ����ʾ�ɺ��֡�
-   �ϺõĽ���취�ǲ���cons25��cgywin��linux��termcap������һ���µ��ն�����zhcon��
-   ��������Ƚ��鷳���������²���ִ�У�
+3. 在zhcon运行后，执行/stand/sysinstall，midc等应用软件，光标位置不正确，表格线显示成乱码。
+   FreeBSD使用的TERM一般是cons25，这些问题都与/etc/termcap的内容有关，主要问题有：
+     不能动态调节屏幕行列数，固定为25行。如果设置成cgywin就可以解决这个问题，
+     没有字符集定义，应用软件误以为当前终端不支持字符集更换的escape序列，所以制表符号全被显示成汉字。
+   较好的解决办法是参照cons25、cgywin和linux的termcap，增加一个新的终端类型zhcon。
+   具体操作比较麻烦，参照以下步骤执行：
      cd ~
      cp /usr/share/misc/termcap termcap
-   �༭termcap����"END OF TERMCAP"ǰ�����������ݣ�
+   编辑termcap，在"END OF TERMCAP"前加上以下内容：
      zhcon:\
      	:xn:xo:\
      	:as=\E[11m:ae=\E[10m:\
      	:tc=cons25:  
-   ע����д��ʽ��zhconҪ���У������:ǰ�棬��tab��
-   �޸ĺ���̣�ִ�б������
+   注意书写格式，zhcon要顶行，后面的:前面，是tab。
+   修改后存盘，执行编译命令：
      cap_mkdb termcap
      cp termcap.db /usr/share/misc/termcap.db
-   ����zhcon����ϵͳ��ִ�����
+   进入zhcon汉字系统后，执行命令：
      setenv TERM zhcon
-   ���һ�����������Ϳ������͵�Ư����midc�ˡ�    
+   如果一切正常，您就可以欣赏到漂亮的midc了。    
